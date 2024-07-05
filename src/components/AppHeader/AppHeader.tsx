@@ -7,7 +7,7 @@ import { HeaderAuthMenu } from "./HeaderAuthMenu";
 
 export function AppHeader() {
   return (
-    <Box pb={120}>
+    <Box>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
           {/* <MantineLogo size={30} /> */}
@@ -15,7 +15,7 @@ export function AppHeader() {
             <span>Gunpla Sekai</span>
           </Link>
           <Group h="100%" gap={5} visibleFrom="sm">
-            <Group>
+            <Group h="100%">
               <Link href="/shop" className={classes.link}>
                 Shop
               </Link>
