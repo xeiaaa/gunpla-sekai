@@ -1,5 +1,5 @@
 {
-  "name": "mantine-minimal-next-template",
+  "name": "gunpla-sekai",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,6 +11,7 @@
   "dependencies": {
     "@mantine/core": "7.11.1",
     "@mantine/hooks": "7.11.1",
+    "@tabler/icons-react": "^3.9.0",
     "next": "14.2.4",
     "react": "18.3.1",
     "react-dom": "18.3.1"
