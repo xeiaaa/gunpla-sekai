@@ -1,0 +1,363 @@
+[
+  {
+    "name": "Mobile Suit Gundam",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam",
+    "type": "TV Series/OVA",
+    "timeline": "Universal Century",
+    "id": 1,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/8/88/MSG_logo_b.png/revision/latest?cb=20210712021355",
+    "mobileSuits": [
+      {
+        "id": 1,
+        "name": "RX-78-2 Gundam",
+        "imageSrc": "https://static.wikia.nocookie.net/gundam/images/3/36/01._RX-78-2_Gundam.jpg/revision/latest/scale-to-width-down/1000?cb=20170821232511"
+      },
+      {
+        "id": 2,
+        "name": "RX-77-2 Guncannon",
+        "imageSrc": "https://static.wikia.nocookie.net/gundam/images/e/eb/Rx-77-2.jpg/revision/latest/scale-to-width-down/1000?cb=20201105132335"
+      },
+      {
+        "id": 3,
+        "name": "RX-75 Guntank",
+        "imageSrc": "https://static.wikia.nocookie.net/gundam/images/8/86/RX-75-4.JPG/revision/latest/scale-to-width-down/1000?cb=20201107090113"
+      }
+    ]
+  },
+  {
+    "name": "Mobile Suit Zeta Gundam",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Zeta_Gundam",
+    "type": "TV Series/OVA",
+    "timeline": "Universal Century",
+    "id": 2,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/f/f9/Logo_Mobile_Suit_Zeta_Gundam.jpg/revision/latest?cb=20181204161344"
+  },
+  {
+    "name": "Mobile Suit Gundam ZZ",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_ZZ",
+    "type": "TV Series/OVA",
+    "timeline": "Universal Century",
+    "id": 3,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/3/31/Logo_Mobile_Suit_Gundam_ZZ.jpg/revision/latest?cb=20181204160607"
+  },
+  {
+    "name": "Mobile Suit Gundam 0080: War in the Pocket",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_0080:_War_in_the_Pocket",
+    "type": "TV Series/OVA",
+    "timeline": "Universal Century",
+    "id": 4
+  },
+  {
+    "name": "Mobile Suit Gundam 0083: Stardust Memory",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_0083:_Stardust_Memory",
+    "type": "TV Series/OVA",
+    "timeline": "Universal Century",
+    "id": 5,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/e/e0/Logo_Mobile_Suit_Gundam_0083_Stardust_Memory.jpg/revision/latest?cb=20181204160405"
+  },
+  {
+    "name": "Mobile Suit Victory Gundam",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Victory_Gundam",
+    "type": "TV Series/OVA",
+    "timeline": "Universal Century",
+    "id": 6,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/b/b0/Logo_Mobile_Suit_Victory_Gundam.jpg/revision/latest?cb=20181204161536"
+  },
+  {
+    "name": "Mobile Suit Gundam: The 08th MS Team",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam:_The_08th_MS_Team",
+    "type": "TV Series/OVA",
+    "timeline": "Universal Century",
+    "id": 7
+  },
+  {
+    "name": "Mobile Suit Gundam MS IGLOO: Apocalypse 0079",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_MS_IGLOO:_Apocalypse_0079",
+    "type": "TV Series/OVA",
+    "timeline": "Universal Century",
+    "id": 8
+  },
+  {
+    "name": "Mobile Suit Gundam MS IGLOO 2: The Gravity Front",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_MS_IGLOO_2:_The_Gravity_Front",
+    "type": "TV Series/OVA",
+    "timeline": "Universal Century",
+    "id": 9,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/1/18/Logo_MS_IGLOO_2.png/revision/latest?cb=20190104130929"
+  },
+  {
+    "name": "Mobile Suit Gundam Unicorn",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_Unicorn",
+    "type": "TV Series/OVA",
+    "timeline": "Universal Century",
+    "id": 10,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/8/8d/Logo_Mobile_Suit_Gundam_Unicorn.png/revision/latest?cb=20190104141316"
+  },
+  {
+    "name": "Mobile Suit Gundam Thunderbolt",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_Thunderbolt",
+    "type": "TV Series/OVA",
+    "timeline": "Universal Century",
+    "id": 11
+  },
+  {
+    "name": "Mobile Suit Gundam Twilight Axis",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_Twilight_Axis",
+    "type": "TV Series/OVA",
+    "timeline": "Universal Century",
+    "id": 12
+  },
+  {
+    "name": "Mobile Suit Gundam: Char's Counterattack",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam:_Char%27s_Counterattack",
+    "type": "Movie",
+    "timeline": "Universal Century",
+    "id": 13
+  },
+  {
+    "name": "Mobile Suit Gundam F91",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_F91",
+    "type": "Movie",
+    "timeline": "Universal Century",
+    "id": 14
+  },
+  {
+    "name": "G-Saviour",
+    "link": "https://gundam.fandom.com/wiki/G-Saviour",
+    "type": "Movie",
+    "timeline": "Universal Century",
+    "id": 15,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/e/e1/G-Saviour_Poster.jpg/revision/latest?cb=20190910132919"
+  },
+  {
+    "name": "Mobile Suit Gundam: The Origin (Manga)",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam:_The_Origin_(Manga)",
+    "type": "Manga",
+    "timeline": "Universal Century",
+    "id": 16
+  },
+  {
+    "name": "Mobile Fighter G Gundam",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Fighter_G_Gundam",
+    "type": "TV Series/OVA",
+    "timeline": "Future Century",
+    "id": 17,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/b/bd/Logo_Mobile_Fighter_G_Gundam.jpg/revision/latest?cb=20181204152552"
+  },
+  {
+    "name": "New Mobile Report Gundam Wing",
+    "link": "https://gundam.fandom.com/wiki/New_Mobile_Report_Gundam_Wing",
+    "type": "TV Series/OVA",
+    "timeline": "After Colony",
+    "id": 18,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/1/1a/Logo_New_Mobile_Report_Gundam_Wing.jpg/revision/latest?cb=20181204160840"
+  },
+  {
+    "name": "Mobile Suit Gundam Wing: Operation Meteor",
+    "link": "#",
+    "type": "TV Series/OVA",
+    "timeline": "After Colony",
+    "id": 19,
+    "logoSrc": null
+  },
+  {
+    "name": "New Mobile Report Gundam Wing: Endless Waltz",
+    "link": "https://gundam.fandom.com/wiki/New_Mobile_Report_Gundam_Wing:_Endless_Waltz",
+    "type": "TV Series/OVA",
+    "timeline": "After Colony",
+    "id": 20,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/9/91/Logo_New_Mobile_Report_Gundam_Wing_Endless_Waltz.png/revision/latest?cb=20181204173501"
+  },
+  {
+    "name": "After War Gundam X",
+    "link": "https://gundam.fandom.com/wiki/After_War_Gundam_X",
+    "type": "TV Series/OVA",
+    "timeline": "After War",
+    "id": 21,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/a/a7/Gundam_X_Logo.png/revision/latest?cb=20200731120658"
+  },
+  {
+    "name": "Turn A Gundam",
+    "link": "https://gundam.fandom.com/wiki/Turn_A_Gundam",
+    "type": "TV Series/OVA",
+    "timeline": "Correct Century",
+    "id": 22,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/c/c3/Logo_Turn_A_Gundam.jpg/revision/latest?cb=20181204161718"
+  },
+  {
+    "name": "Mobile Suit Gundam SEED",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_SEED",
+    "type": "TV Series/OVA",
+    "timeline": "Cosmic Era",
+    "id": 23,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/2/26/Gundam_SEED_Title_Card_02_%28SEED_HD_OP3%29.png/revision/latest?cb=20211205212607"
+  },
+  {
+    "name": "Mobile Suit Gundam SEED Destiny",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_SEED_Destiny",
+    "type": "TV Series/OVA",
+    "timeline": "Cosmic Era",
+    "id": 24,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/3/37/Gundam_SEED_Destiny_title_logo_2.png/revision/latest?cb=20240426045547"
+  },
+  {
+    "name": "Mobile Suit Gundam 00",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_00",
+    "type": "TV Series/OVA/Movie",
+    "timeline": "Anno Domini",
+    "id": 25,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/a/a0/Logo_Mobile_Suit_Gundam_00.jpg/revision/latest?cb=20181204155911"
+  },
+  {
+    "name": "Mobile Suit Gundam 00 The Movie -A wakening of the Trailblazer",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_00_The_Movie_-A_wakening_of_the_Trailblazer-",
+    "type": "TV Series/OVA/Movie",
+    "timeline": "Anno Domini",
+    "id": 26
+  },
+  {
+    "name": "Model Suit Gunpla Builders Beginning G",
+    "link": "https://gundam.fandom.com/wiki/Model_Suit_Gunpla_Builders_Beginning_G",
+    "type": "TV Series/OVA",
+    "timeline": "Gunpla Builders",
+    "id": 27
+  },
+  {
+    "name": "Mobile Suit Gundam AGE",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_AGE",
+    "type": "TV Series/OVA",
+    "timeline": "Advanced Generation",
+    "id": 28,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/9/97/Logo_Gundam_Age.png/revision/latest?cb=20190103194405"
+  },
+  {
+    "name": "Gundam Reconguista in G",
+    "link": "https://gundam.fandom.com/wiki/Gundam_Reconguista_in_G",
+    "type": "TV Series/OVA",
+    "timeline": "Regild Century",
+    "id": 29,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/d/d6/Gundam_Reconguista_in_G_Logo.png/revision/latest?cb=20190411041748"
+  },
+  {
+    "name": "Mobile Suit Gundam IRON-BLOODED ORPHANS",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_IRON-BLOODED_ORPHANS",
+    "type": "TV Series/OVA",
+    "timeline": "Post Disaster",
+    "id": 30,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/a/a9/Mobile_Suit_Gundam_Iron-Blood_Orphans_English_Logo.jpg/revision/latest?cb=20190709180724"
+  },
+  {
+    "name": "Mobile Suit Gundam the Witch from Mercury",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_the_Witch_from_Mercury",
+    "type": "TV Series/OVA",
+    "timeline": "Ad Stella",
+    "id": 31,
+    "logoSrc": "https://static.wikia.nocookie.net/gundam/images/1/12/G-Witch_Season_2_Key_Visual.jpg/revision/latest?cb=20230327110033"
+  },
+  {
+    "name": "Gundam Build Fighters",
+    "link": "https://gundam.fandom.com/wiki/Gundam_Build_Fighters",
+    "type": "TV Series/OVA",
+    "timeline": "Build Fighters",
+    "id": 32
+  },
+  {
+    "name": "Gundam Build Fighters Try",
+    "link": "https://gundam.fandom.com/wiki/Gundam_Build_Fighters_Try",
+    "type": "TV Series/OVA",
+    "timeline": "Build Fighters",
+    "id": 33
+  },
+  {
+    "name": "Gundam Build Metaverse",
+    "link": "https://gundam.fandom.com/wiki/Gundam_Build_Metaverse",
+    "type": "TV Series/OVA",
+    "timeline": "Build Fighters",
+    "id": 34
+  },
+  {
+    "name": "Mobile Suit SD Gundam",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_SD_Gundam",
+    "type": "TV Series/OVA",
+    "timeline": "SD Gundam",
+    "id": 35
+  },
+  {
+    "name": "Mobile Suit SD Gundam Mk II",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_SD_Gundam_Mk_II",
+    "type": "TV Series/OVA",
+    "timeline": "SD Gundam",
+    "id": 36
+  },
+  {
+    "name": "Mobile Suit SD Gundam Mk III",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_SD_Gundam_Mk_III",
+    "type": "TV Series/OVA",
+    "timeline": "SD Gundam",
+    "id": 37
+  },
+  {
+    "name": "Mobile Suit SD Gundam Mk IV",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_SD_Gundam_Mk_IV",
+    "type": "TV Series/OVA",
+    "timeline": "SD Gundam",
+    "id": 38
+  },
+  {
+    "name": "Mobile Suit SD Gundam Mk V",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_SD_Gundam_Mk_V",
+    "type": "TV Series/OVA",
+    "timeline": "SD Gundam",
+    "id": 39
+  },
+  {
+    "name": "Superior Defender Gundam Force",
+    "link": "https://gundam.fandom.com/wiki/Superior_Defender_Gundam_Force",
+    "type": "TV Series/OVA",
+    "timeline": "SD Gundam",
+    "id": 40
+  },
+  {
+    "name": "Gundam: Mission To The Rise",
+    "link": "https://gundam.fandom.com/wiki/Gundam:_Mission_To_The_Rise",
+    "type": "Movie",
+    "timeline": "Other/Unsorted",
+    "id": 41
+  },
+  {
+    "name": "Gundam Evolve",
+    "link": "https://gundam.fandom.com/wiki/Gundam_Evolve",
+    "type": "Movie",
+    "timeline": "Other/Unsorted",
+    "id": 42
+  },
+  {
+    "name": "Plamo-Kyoshiro",
+    "link": "https://gundam.fandom.com/wiki/Plamo-Kyoshiro",
+    "type": "Other",
+    "timeline": "Other",
+    "id": 43
+  },
+  {
+    "name": "Shin Plamo-Kyoshiro",
+    "link": "#",
+    "type": "Other",
+    "timeline": "Other",
+    "id": 44,
+    "logoSrc": null
+  },
+  {
+    "name": "Cho-Senshi Gundam Boy",
+    "link": "https://gundam.fandom.com/wiki/Cho-Senshi_Gundam_Boy",
+    "type": "Other",
+    "timeline": "Other",
+    "id": 45
+  },
+  {
+    "name": "Mobile Suit Gundam Alive",
+    "link": "https://gundam.fandom.com/wiki/Mobile_Suit_Gundam_Alive",
+    "type": "Other",
+    "timeline": "Other",
+    "id": 46
+  }
+]

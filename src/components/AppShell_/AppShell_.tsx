@@ -9,7 +9,9 @@ export function AppShell_({ children }: { children: any }) {
         <AppHeader />
       </AppShell.Header>
 
-      <AppShell.Main>{children}</AppShell.Main>
+      <AppShell.Main display="flex" dir="column">
+        {children}
+      </AppShell.Main>
     </AppShell>
   );
 }
