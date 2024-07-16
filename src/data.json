@@ -1,0 +1,572 @@
+[
+  {
+    "name": "X-1 Black",
+    "hex": "#221F20",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-2 White",
+    "hex": "#FFFFFF",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-3 Royal Blue",
+    "hex": "#083C71",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-4 Blue",
+    "hex": "#033294",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-5 Green",
+    "hex": "#01503D",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-6 Orange",
+    "hex": "#F1632A",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-7 Red",
+    "hex": "#AB2328",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-8 Lemon Yellow",
+    "hex": "#F2F20D",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-9 Brown",
+    "hex": "#794A35",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-10 Gun Metal",
+    "hex": "#2C3539",
+    "finish": "Metallic"
+  },
+  {
+    "name": "X-11 Chrome Silver",
+    "hex": "#D0D0D0",
+    "finish": "Metallic"
+  },
+  {
+    "name": "X-12 Gold Leaf",
+    "hex": "#DBAC34",
+    "finish": "Metallic"
+  },
+  {
+    "name": "X-13 Metallic Blue",
+    "hex": "#335CA9",
+    "finish": "Metallic"
+  },
+  {
+    "name": "X-14 Sky Blue",
+    "hex": "#50A6C2",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-15 Light Green",
+    "hex": "#92C36E",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-16 Purple",
+    "hex": "#6A468F",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-18 Semi Gloss Black",
+    "hex": "#282828",
+    "finish": "Semi-Gloss"
+  },
+  {
+    "name": "X-19 Smoke",
+    "hex": "#4D4D4D",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-20A Thinner",
+    "hex": "#000000",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-21 Flat Base",
+    "hex": "#FFFFFF",
+    "finish": "Matte"
+  },
+  {
+    "name": "X-22 Clear",
+    "hex": "#FFFFFF",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-23 Clear Blue",
+    "hex": "#00A2E8",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-24 Clear Yellow",
+    "hex": "#FFD700",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-25 Clear Green",
+    "hex": "#00FF00",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-26 Clear Orange",
+    "hex": "#FF8C00",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-27 Clear Red",
+    "hex": "#FF0000",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-28 Park Green",
+    "hex": "#008000",
+    "finish": "Gloss"
+  },
+  {
+    "name": "X-29 Semi Gloss Black",
+    "hex": "#282828",
+    "finish": "Semi-Gloss"
+  },
+  {
+    "name": "X-30 Black Green",
+    "hex": "#333333",
+    "finish": "Gloss"
+  },
+  {
+    "name": "XF-1 Flat Black",
+    "hex": "#231F20",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-2 Flat White",
+    "hex": "#F9F9F9",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-3 Flat Yellow",
+    "hex": "#FAD700",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-4 Yellow Green",
+    "hex": "#96A437",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-5 Flat Green",
+    "hex": "#4D6A4A",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-6 Copper",
+    "hex": "#B67530",
+    "finish": "Metallic"
+  },
+  {
+    "name": "XF-7 Flat Red",
+    "hex": "#C63633",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-8 Flat Blue",
+    "hex": "#3F5896",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-9 Hull Red",
+    "hex": "#54392D",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-10 Flat Brown",
+    "hex": "#5D3F36",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-11 J.N. Green",
+    "hex": "#556B2F",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-12 J.N. Grey",
+    "hex": "#6E6E6E",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-13 Japanese Army Green",
+    "hex": "#4B4B4B",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-14 J.A. Grey",
+    "hex": "#B0B0B0",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-15 Flat Flesh",
+    "hex": "#FFE0BD",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-16 Flat Aluminum",
+    "hex": "#A0A0A0",
+    "finish": "Metallic"
+  },
+  {
+    "name": "XF-17 Sea Blue",
+    "hex": "#2E3F4F",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-18 Medium Blue",
+    "hex": "#2F4F4F",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-19 Sky Grey",
+    "hex": "#708090",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-20 Medium Grey",
+    "hex": "#9E9E9E",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-21 Sky",
+    "hex": "#B0E0E6",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-22 RLM Grey",
+    "hex": "#A0A0A0",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-23 Light Blue",
+    "hex": "#ADD8E6",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-24 Dark Grey",
+    "hex": "#A9A9A9",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-25 Light Sea Grey",
+    "hex": "#B0C4DE",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-26 Deep Green",
+    "hex": "#006400",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-27 Black Green",
+    "hex": "#333333",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-28 Dark Copper",
+    "hex": "#B87333",
+    "finish": "Metallic"
+  },
+  {
+    "name": "XF-29 Dark Earth",
+    "hex": "#8B4513",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-30 Dark Green",
+    "hex": "#013220",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-31 Flat Brown",
+    "hex": "#7B3F00",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-32 Flat Aluminium",
+    "hex": "#A9A9A9",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-33 Flat Black",
+    "hex": "#000000",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-34 Flat White",
+    "hex": "#FFFFFF",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-35 Semi Gloss Clear",
+    "hex": "#FFFFFF",
+    "finish": "Semi-Gloss"
+  },
+  {
+    "name": "XF-36 Flat Blue",
+    "hex": "#003366",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-37 Buff",
+    "hex": "#F0E68C",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-38 Light Buff",
+    "hex": "#F5DEB3",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-39 Dark Yellow",
+    "hex": "#BDB76B",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-40 Dark Grey",
+    "hex": "#A9A9A9",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-41 Olive Drab",
+    "hex": "#556B2F",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-42 Light Olive",
+    "hex": "#808000",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-43 Red Brown",
+    "hex": "#A52A2A",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-44 Blue Grey",
+    "hex": "#6699CC",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-45 Sea Grey",
+    "hex": "#708090",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-46 Light Grey",
+    "hex": "#D3D3D3",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-47 Red Brown",
+    "hex": "#8B4513",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-48 Red",
+    "hex": "#FF0000",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-49 Khaki",
+    "hex": "#F0E68C",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-50 Field Blue",
+    "hex": "#1F305E",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-51 Khaki Drab",
+    "hex": "#4B5320",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-52 Flat Earth",
+    "hex": "#8B4513",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-53 Neutral Grey",
+    "hex": "#808080",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-54 Dark Sea Grey",
+    "hex": "#2F4F4F",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-55 Deck Tan",
+    "hex": "#D2B48C",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-56 Metallic Grey",
+    "hex": "#A9A9A9",
+    "finish": "Metallic"
+  },
+  {
+    "name": "XF-57 Buff",
+    "hex": "#F0DC82",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-58 Olive Green",
+    "hex": "#6B8E23",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-59 Desert Yellow",
+    "hex": "#EDC9AF",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-60 Dark Yellow",
+    "hex": "#BDB76B",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-61 Dark Green",
+    "hex": "#013220",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-62 Olive Drab",
+    "hex": "#556B2F",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-63 German Grey",
+    "hex": "#A9A9A9",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-64 Red Brown",
+    "hex": "#8B4513",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-65 Field Grey",
+    "hex": "#4B5320",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-66 Light Grey",
+    "hex": "#D3D3D3",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-67 Nato Green",
+    "hex": "#8F9779",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-68 Nato Brown",
+    "hex": "#8B4513",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-69 Nato Black",
+    "hex": "#000000",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-70 Dark Green",
+    "hex": "#013220",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-71 Cockpit Green",
+    "hex": "#8F9779",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-72 Brown",
+    "hex": "#8B4513",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-73 Dark Green",
+    "hex": "#013220",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-74 Olive Drab",
+    "hex": "#556B2F",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-75 Grey",
+    "hex": "#808080",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-76 Grey Green",
+    "hex": "#6B8E23",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-77 Grey",
+    "hex": "#808080",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-78 Grey",
+    "hex": "#808080",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-79 Grey",
+    "hex": "#808080",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-80 Grey",
+    "hex": "#808080",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-81 Grey",
+    "hex": "#808080",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-82 Grey",
+    "hex": "#808080",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-83 Grey",
+    "hex": "#808080",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-84 Grey",
+    "hex": "#808080",
+    "finish": "Matte"
+  },
+  {
+    "name": "XF-85 Grey",
+    "hex": "#808080",
+    "finish": "Matte"
+  }
+]

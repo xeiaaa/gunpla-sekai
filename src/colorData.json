@@ -1,0 +1,154 @@
+[
+  {
+    "name": "AK 3rd Gen Acrylics",
+    "samples": [
+      { "name": "Crimson Red", "hex": "#D32F2F", "finish": "Glossy" },
+      { "name": "Forest Green", "hex": "#388E3C", "finish": "Matte" },
+      { "name": "Ocean Blue", "hex": "#1976D2", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "AK Acrylics",
+    "samples": [
+      { "name": "Cherry Red", "hex": "#C62828", "finish": "Glossy" },
+      { "name": "Emerald Green", "hex": "#2E7D32", "finish": "Matte" },
+      { "name": "Royal Blue", "hex": "#1565C0", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "AK Real Color",
+    "samples": [
+      { "name": "Brick Red", "hex": "#B71C1C", "finish": "Glossy" },
+      { "name": "Pine Green", "hex": "#1B5E20", "finish": "Matte" },
+      { "name": "Midnight Blue", "hex": "#0D47A1", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "ALCLAD II",
+    "samples": [
+      { "name": "Silver", "hex": "#9E9E9E", "finish": "Glossy" },
+      { "name": "Steel", "hex": "#757575", "finish": "Matte" },
+      { "name": "Gunmetal", "hex": "#616161", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "AMMO by Mig Jimenez Ammo Acrylics",
+    "samples": [
+      { "name": "Rose Red", "hex": "#EF5350", "finish": "Glossy" },
+      { "name": "Mint Green", "hex": "#66BB6A", "finish": "Matte" },
+      { "name": "Sky Blue", "hex": "#42A5F5", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "Acrylicos Vallejo Vallejo Game Air",
+    "samples": [
+      { "name": "Coral Red", "hex": "#E57373", "finish": "Glossy" },
+      { "name": "Spring Green", "hex": "#81C784", "finish": "Matte" },
+      { "name": "Azure Blue", "hex": "#64B5F6", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "Acrylicos Vallejo Vallejo Game Color",
+    "samples": [
+      { "name": "Fire Red", "hex": "#F44336", "finish": "Glossy" },
+      { "name": "Lime Green", "hex": "#4CAF50", "finish": "Matte" },
+      { "name": "Electric Blue", "hex": "#2196F3", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "Acrylicos Vallejo Vallejo Liquid Gold",
+    "samples": [
+      { "name": "Gold Leaf", "hex": "#FFD700", "finish": "Glossy" },
+      { "name": "Antique Gold", "hex": "#B8860B", "finish": "Matte" },
+      { "name": "Rich Gold", "hex": "#DAA520", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "Acrylicos Vallejo Vallejo Mecha Color",
+    "samples": [
+      { "name": "Bright Red", "hex": "#FF5252", "finish": "Glossy" },
+      { "name": "Neon Green", "hex": "#69F0AE", "finish": "Matte" },
+      { "name": "Vivid Blue", "hex": "#448AFF", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "Acrylicos Vallejo Vallejo Metal Color",
+    "samples": [
+      { "name": "Chrome", "hex": "#B0BEC5", "finish": "Glossy" },
+      { "name": "Aluminum", "hex": "#90A4AE", "finish": "Matte" },
+      { "name": "Titanium", "hex": "#78909C", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "Acrylicos Vallejo Vallejo Model Air",
+    "samples": [
+      { "name": "Blush Red", "hex": "#EF9A9A", "finish": "Glossy" },
+      { "name": "Mint Green", "hex": "#A5D6A7", "finish": "Matte" },
+      { "name": "Cerulean Blue", "hex": "#90CAF9", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "Acrylicos Vallejo Vallejo Model Color",
+    "samples": [
+      { "name": "Blush Red", "hex": "#E57373", "finish": "Glossy" },
+      { "name": "Mint Green", "hex": "#81C784", "finish": "Matte" },
+      { "name": "Cerulean Blue", "hex": "#64B5F6", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "Acrylicos Vallejo Vallejo Panzer Aces",
+    "samples": [
+      { "name": "Cardinal Red", "hex": "#F44336", "finish": "Glossy" },
+      { "name": "Sage Green", "hex": "#4CAF50", "finish": "Matte" },
+      { "name": "Navy Blue", "hex": "#2196F3", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "Citadel Colour Citadel",
+    "samples": [
+      { "name": "Sunburst Yellow", "hex": "#FFEB3B", "finish": "Glossy" },
+      { "name": "Goldenrod", "hex": "#FFC107", "finish": "Matte" },
+      { "name": "Amber", "hex": "#FF9800", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "E7 Paints E7 Paints",
+    "samples": [
+      { "name": "Coral", "hex": "#FF7043", "finish": "Glossy" },
+      { "name": "Peach", "hex": "#FFA726", "finish": "Matte" },
+      { "name": "Apricot", "hex": "#FFCC80", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "GSI Creos Corp Acrysion",
+    "samples": [
+      { "name": "Chestnut", "hex": "#8D6E63", "finish": "Glossy" },
+      { "name": "Taupe", "hex": "#D7CCC8", "finish": "Matte" },
+      { "name": "Walnut", "hex": "#BCAAA4", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "GSI Creos Corp Aqueous Hobby Color",
+    "samples": [
+      { "name": "Salmon", "hex": "#FFAB91", "finish": "Glossy" },
+      { "name": "Peach", "hex": "#FFCCBC", "finish": "Matte" },
+      { "name": "Coral", "hex": "#FF8A65", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "GSI Creos Corp Gundam Color",
+    "samples": [
+      { "name": "Blush Pink", "hex": "#F48FB1", "finish": "Glossy" },
+      { "name": "Rose", "hex": "#F06292", "finish": "Matte" },
+      { "name": "Fuchsia", "hex": "#EC407A", "finish": "Metallic" }
+    ]
+  },
+  {
+    "name": "GSI Creos Corp Mr. Color",
+    "samples": [
+      { "name": "Lavender", "hex": "#CE93D8", "finish": "Glossy" },
+      { "name": "Amethyst", "hex": "#BA68C8", "finish": "Matte" },
+      { "name": "Violet", "hex": "#AB47BC", "finish": "Metallic" }
+    ]
+  }
+]
