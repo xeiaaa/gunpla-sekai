@@ -74,13 +74,10 @@ export function CustomizePageProvider({
   );
 
   useEffect(() => {
-    // TODO: remove later
-    (window as any).modelViewer = modelViewerRef;
-
     const handleLoad = () => {
       const { current: modelViewer } = modelViewerRef;
       if (!modelViewer) return;
-      (window as any).modelViewer = modelViewer;
+
       if (modelViewer.model) {
         setMaterials(
           modelViewer.model.materials.reduce(
