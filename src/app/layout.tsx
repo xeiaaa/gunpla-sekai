@@ -5,8 +5,8 @@ import { theme } from "./theme";
 import { AppShell_ } from "../components/AppShell_/AppShell_";
 
 export const metadata = {
-  title: "Mantine Next.js template",
-  description: "I am using Mantine with Next.js!",
+  title: "Gunpla Sekai",
+  description: "Dedicated to Gunpla (ガンプラ) and anything model kit related",
 };
 
 export default function RootLayout({ children }: { children: any }) {
