@@ -1,11 +1,12 @@
 "use client";
 
 import { Box, Button, Flex, Stack } from "@mantine/core";
-import "@google/model-viewer";
+
 import { handleSaveImage, invertColor } from "./helpers";
 import useCustomizePageContext from "./hooks/useCustomizePageContext";
 import Drawers from "./components/Drawers";
 import Sidebar from "./components/Sidebar/Sidebar";
+import { useEffect } from "react";
 
 export default function CustomizePage() {
   const {
@@ -16,6 +17,10 @@ export default function CustomizePage() {
     openControlsDrawer,
     openSettingsDrawer,
   } = useCustomizePageContext();
+
+  useEffect(() => {
+    import("@google/model-viewer").catch(console.error);
+  }, []);
 
   return (
     <>
