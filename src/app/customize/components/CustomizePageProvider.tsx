@@ -210,7 +210,7 @@ export function CustomizePageProvider({
     return () => {
       modelViewerRef?.current?.removeEventListener("load", handleLoad);
     };
-  }, []);
+  }, [initialize]);
 
   const currentMaterial: Material | undefined =
     materials[selectedMaterialSlug || ""];
