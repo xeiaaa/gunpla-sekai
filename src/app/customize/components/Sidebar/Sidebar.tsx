@@ -62,8 +62,7 @@ export default function Sidebar() {
           <Accordion
             // variant="filled"
             defaultValue="Head"
-            style={{ width: "100%" }}
-          >
+            style={{ width: "100%" }}>
             {parts.map((part) => {
               return (
                 <Accordion.Item value={part.slug} key={part.slug}>
@@ -82,8 +81,7 @@ export default function Sidebar() {
                           onClick={() => {
                             console.log(slug);
                             setSelectedMaterialSlug(slug);
-                          }}
-                        >
+                          }}>
                           {label}
                         </Button>
                       );
@@ -102,14 +100,12 @@ export default function Sidebar() {
           backgroundColor: "#fafafa",
           padding: 8,
           position: "relative",
-        }}
-      >
+        }}>
         <Flex
           style={{
             width: "100%",
             justifyContent: "center",
-          }}
-        >
+          }}>
           <SegmentedControl
             value={currentColorTab}
             onChange={(e) => setCurrentColorTab(e as COLOR_TYPE)}
@@ -146,8 +142,7 @@ export default function Sidebar() {
                     }
                     return prev;
                   });
-                }}
-              >
+                }}>
                 <IconPlus />
               </Button>
             </Flex>
@@ -204,8 +199,7 @@ export default function Sidebar() {
                           return { ...prev };
                         });
                       }
-                    }}
-                  >
+                    }}>
                     <ColorSwatch color={color} withShadow={true}>
                       {color === currentMaterialData?.color && (
                         <CheckIcon
@@ -235,8 +229,7 @@ export default function Sidebar() {
                   <Menu.Item
                     key={paints.value}
                     style={{ padding: "2px, 4px" }}
-                    onClick={() => handleSelectedBrand(paints.value)}
-                  >
+                    onClick={() => handleSelectedBrand(paints.value)}>
                     <Text size="sm">{paints.name}</Text>
                   </Menu.Item>
                 ))}
@@ -262,7 +255,7 @@ export default function Sidebar() {
                       console.log("Changing material color...");
                       console.log(
                         selectedMaterialSlug,
-                        paint.hex,
+                        paint.value,
                         isClear ? "clear" : "opaque"
                       );
                       if (currentMaterial) {
@@ -278,7 +271,7 @@ export default function Sidebar() {
                         const alpha = isClear ? clearPartsAlpha : 1;
 
                         const baseColorFactor: any = hexToRgba(
-                          paint.hex,
+                          paint.value,
                           alpha
                         );
 
@@ -286,9 +279,11 @@ export default function Sidebar() {
                           baseColorFactor
                         );
 
+                        (window as any).currentMaterial = currentMaterial;
+
                         // Update Materials Map (material data)
                         setMaterialsMap((prev) => {
-                          prev[currentMaterial.name].color = paint.hex;
+                          prev[currentMaterial.name].color = paint.value;
                           // TODO: Remove alphaMode (will rely on isClear)
                           prev[currentMaterial.name].alphaMode = isClear
                             ? ALPHA_MODE.BLEND
@@ -298,12 +293,11 @@ export default function Sidebar() {
                           return { ...prev };
                         });
                       }
-                    }}
-                  >
-                    <ColorSwatch color={paint.hex} withShadow={true}>
-                      {paint.hex === currentMaterialData?.color && (
+                    }}>
+                    <ColorSwatch color={paint.value} withShadow={true}>
+                      {paint.value === currentMaterialData?.color && (
                         <CheckIcon
-                          color={invertColor(paint.hex)}
+                          color={invertColor(paint.value)}
                           style={{ width: rem(12), height: rem(12) }}
                         />
                       )}
@@ -313,8 +307,7 @@ export default function Sidebar() {
                       id={paint.name}
                       delayShow={600}
                       variant="info"
-                      style={{ padding: 6 }}
-                    >
+                      style={{ padding: 6 }}>
                       {paint.name}
                     </Tooltip>
                   </UnstyledButton>
