@@ -53,6 +53,7 @@ export default function CustomizePage() {
               }}>
               Settings
             </Button>
+
             <Button
               variant="outline"
               color={invertColor(bgColor)}

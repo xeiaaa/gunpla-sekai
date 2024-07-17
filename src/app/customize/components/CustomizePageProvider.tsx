@@ -63,6 +63,8 @@ export interface ICustomizePageProviderContext {
   selectedPaint: Paint | null;
   setSelectedPaint: React.Dispatch<React.SetStateAction<Paint | null>>;
   isLoadingModel: boolean;
+
+  reset: () => void;
 }
 
 export const CustomizePageProviderContext =
@@ -146,57 +148,61 @@ export function CustomizePageProvider({
     []
   );
 
+  const initialize = useCallback(() => {
+    const { current: modelViewer } = modelViewerRef;
+    if (!modelViewer) return;
+
+    if (modelViewer.model) {
+      // Materials -> use this to update properties directly
+      const _materials = modelViewer.model.materials.reduce(
+        (acc: { [key: string]: Material }, material) => {
+          acc[material.name] = material;
+          return acc;
+        },
+        {}
+      );
+      console.log("******", _materials);
+      setMaterials(_materials);
+
+      // This will come from the database later...
+      const initialMaterialsMap = { ...sazabiMaterialsMap };
+
+      const paletteSet = new Set();
+      paletteSet.add("#ffffff");
+      paletteSet.add("#000000");
+
+      // Apply the initial material properties
+      Object.values(_materials).forEach((material) => {
+        // Color
+        material.pbrMetallicRoughness.setBaseColorFactor(
+          hexToRgba(initialMaterialsMap[material.name].paint.color as string)
+        );
+
+        paletteSet.add(initialMaterialsMap[material.name].paint.color);
+
+        // Alpha Mode
+        material.setAlphaMode(
+          initialMaterialsMap[material.name].alphaMode || ALPHA_MODE.OPAQUE
+        );
+
+        // TODO: Apply Finish
+        const materialData = initialMaterialsMap[material.name];
+
+        if (materialData) {
+          applyFinishToMaterial(material, materialData.paint.finish);
+        }
+      });
+
+      setPalette([...(paletteSet as any)]);
+      setMaterialsMap(initialMaterialsMap);
+      console.log("FINISHED LOADING...");
+      setIsLoadingModel(false);
+    }
+  }, [applyFinishToMaterial]);
+
   useEffect(() => {
     const handleLoad = () => {
-      const { current: modelViewer } = modelViewerRef;
-      if (!modelViewer) return;
-
-      if (modelViewer.model) {
-        // Materials -> use this to update properties directly
-        const _materials = modelViewer.model.materials.reduce(
-          (acc: { [key: string]: Material }, material) => {
-            acc[material.name] = material;
-            return acc;
-          },
-          {}
-        );
-        console.log("******", _materials);
-        setMaterials(_materials);
-
-        // This will come from the database later...
-        const initialMaterialsMap = { ...sazabiMaterialsMap };
-
-        const paletteSet = new Set();
-        paletteSet.add("#ffffff");
-        paletteSet.add("#000000");
-
-        // Apply the initial material properties
-        Object.values(_materials).forEach((material) => {
-          // Color
-          material.pbrMetallicRoughness.setBaseColorFactor(
-            hexToRgba(initialMaterialsMap[material.name].paint.color as string)
-          );
-
-          paletteSet.add(initialMaterialsMap[material.name].paint.color);
-
-          // Alpha Mode
-          material.setAlphaMode(
-            initialMaterialsMap[material.name].alphaMode || ALPHA_MODE.OPAQUE
-          );
-
-          // TODO: Apply Finish
-          const materialData = initialMaterialsMap[material.name];
-
-          if (materialData) {
-            applyFinishToMaterial(material, materialData.paint.finish);
-          }
-        });
-
-        setPalette([...(paletteSet as any)]);
-        setMaterialsMap(initialMaterialsMap);
-        console.log("FINISHED LOADING...");
-        setIsLoadingModel(false);
-      }
+      initialize();
     };
 
     modelViewerRef?.current?.addEventListener("load", handleLoad);
@@ -204,7 +210,7 @@ export function CustomizePageProvider({
     return () => {
       modelViewerRef?.current?.removeEventListener("load", handleLoad);
     };
-  }, [applyFinishToMaterial]);
+  }, []);
 
   const currentMaterial: Material | undefined =
     materials[selectedMaterialSlug || ""];
@@ -261,6 +267,8 @@ export function CustomizePageProvider({
         setSelectedPaint,
 
         isLoadingModel,
+
+        reset: initialize,
       }}>
       {children}
     </CustomizePageProviderContext.Provider>

@@ -62,3 +62,12 @@ export const rgbaToHex = (rgba: [number, number, number, number]): string => {
   // Combine all components into a single hex string
   return `#${redHex}${greenHex}${blueHex}${alphaHex}`;
 };
+
+export const getRandomColor = () => {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+};
