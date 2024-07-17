@@ -11,6 +11,7 @@ import { ALPHA_MODE, COLOR_TYPE, MaterialData } from "../../../types";
 import { Material } from "@google/model-viewer/lib/features/scene-graph/material";
 import { hexToRgba, rgbaToHex } from "../helpers";
 import { sazabiMaterialsMap } from "../parts";
+import { commercialPaints } from "../paints";
 
 export interface ICustomizePageProviderContext {
   modelViewerRef: any;
@@ -41,6 +42,10 @@ export interface ICustomizePageProviderContext {
   setMaterialsMap: React.Dispatch<
     React.SetStateAction<Record<string, MaterialData>>
   >;
+  paint: Record<string, string>[];
+  setPaint: React.Dispatch<React.SetStateAction<Record<string, string>[]>>;
+  selectedBrand: string;
+  setSelectedBrand: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export const CustomizePageProviderContext =
@@ -66,6 +71,9 @@ export function CustomizePageProvider({
   const [colorToAdd, setColorToAdd] = useState<string>("#ffffff");
   const [palette, setPalette] = useState<string[]>(["#ffffff", "#000000"]);
   const [isClear, setIsClear] = useState<boolean>(false);
+
+  const [selectedBrand, setSelectedBrand] = useState<string>("");
+  const [paint, setPaint] = useState<Record<string, string>[] | []>([]);
 
   const [
     controlsDrawerOpened,
@@ -150,7 +158,9 @@ export function CustomizePageProvider({
       modelViewerRef?.current?.removeEventListener("load", handleLoad);
     };
   }, []);
-  console.log({ materials });
+  // console.log({ materials });
+  console.log({ paint });
+  console.log({ selectedBrand });
   return (
     <CustomizePageProviderContext.Provider
       value={{
@@ -180,7 +190,12 @@ export function CustomizePageProvider({
         setIsClear,
         materialsMap,
         setMaterialsMap,
-      }}>
+        paint,
+        setPaint,
+        selectedBrand,
+        setSelectedBrand,
+      }}
+    >
       {children}
     </CustomizePageProviderContext.Provider>
   );

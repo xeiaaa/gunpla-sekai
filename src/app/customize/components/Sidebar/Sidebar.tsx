@@ -8,6 +8,7 @@ import {
   ColorPicker,
   ColorSwatch,
   Flex,
+  Menu,
   rem,
   ScrollArea,
   SegmentedControl,
@@ -20,6 +21,8 @@ import useCustomizePageContext from "../../hooks/useCustomizePageContext";
 import { IconPlus } from "@tabler/icons-react";
 import { ALPHA_MODE, COLOR_TYPE } from "../../../../types";
 import { hexToRgba, invertColor } from "../../helpers";
+import { commercialPaints } from "../../paints";
+import { Tooltip } from "react-tooltip";
 
 export default function Sidebar() {
   const {
@@ -39,10 +42,18 @@ export default function Sidebar() {
     clearPartsAlpha,
     materialsMap,
     setMaterialsMap,
+    paint,
+    setPaint,
+    selectedBrand,
+    setSelectedBrand,
   } = useCustomizePageContext();
 
   const currentMaterial = materials[selectedMaterialSlug || ""];
   const currentMaterialData = materialsMap[selectedMaterialSlug || ""];
+  const handleSelectedBrand = (e: string) => {
+    setSelectedBrand(e);
+    setPaint(commercialPaints[e].paints);
+  };
 
   return (
     <>
@@ -113,89 +124,199 @@ export default function Sidebar() {
           </>
         )}
         <Space h={16} />
-        <Text size="sm">Add to Palette</Text>
-        <Flex gap={16}>
-          <ColorInput value={colorToAdd} onChange={(e) => setColorToAdd(e)} />
-          <Button
-            variant="transparent"
-            style={{ padding: 8 }}
-            onClick={() => {
-              setPalette((prev) => {
-                if (!prev.includes(colorToAdd)) {
-                  return [...prev, colorToAdd];
-                }
-                return prev;
-              });
-            }}>
-            <IconPlus />
-          </Button>
-        </Flex>
-        <Space h={16} />
-        <Checkbox
-          label="Clear Part"
-          checked={isClear}
-          onChange={(e) => setIsClear(e.currentTarget.checked)}
-        />
-        <Space h={16} />
-        <Text size="sm"> Palette</Text>
-
-        <Flex gap={8} wrap="wrap">
-          {palette.map((color) => {
-            return (
-              <UnstyledButton
-                key={color}
+        {currentColorTab === "OWN" && (
+          <>
+            <Text size="sm">Add to Palette</Text>
+            <Flex gap={16}>
+              <ColorInput
+                value={colorToAdd}
+                onChange={(e) => setColorToAdd(e)}
+              />
+              <Button
                 variant="transparent"
-                style={{ border: "red", borderWidth: 2 }}
+                style={{ padding: 8 }}
                 onClick={() => {
-                  console.log("Changing material color...");
-                  console.log(
-                    selectedMaterialSlug,
-                    color,
-                    isClear ? "clear" : "opaque"
-                  );
-                  if (currentMaterial) {
-                    console.log(currentMaterial.getAlphaCutoff());
-                    if (isClear) {
-                      currentMaterial.setAlphaMode("BLEND");
-                      currentMaterial.setAlphaCutoff(0.9);
-                    } else {
-                      currentMaterial.setAlphaMode("OPAQUE");
-                      currentMaterial.setAlphaCutoff(0);
+                  setPalette((prev) => {
+                    if (!prev.includes(colorToAdd)) {
+                      return [...prev, colorToAdd];
                     }
-
-                    const alpha = isClear ? clearPartsAlpha : 1;
-
-                    const baseColorFactor: any = hexToRgba(color, alpha);
-
-                    currentMaterial.pbrMetallicRoughness.setBaseColorFactor(
-                      baseColorFactor
-                    );
-
-                    // Update Materials Map (material data)
-                    setMaterialsMap((prev) => {
-                      prev[currentMaterial.name].color = color;
-                      // TODO: Remove alphaMode (will rely on isClear)
-                      prev[currentMaterial.name].alphaMode = isClear
-                        ? ALPHA_MODE.BLEND
-                        : ALPHA_MODE.OPAQUE;
-
-                      prev[currentMaterial.name].isClear = isClear;
-                      return { ...prev };
-                    });
-                  }
+                    return prev;
+                  });
                 }}>
-                <ColorSwatch color={color} withShadow={true}>
-                  {color === currentMaterialData?.color && (
-                    <CheckIcon
-                      color={invertColor(color)}
-                      style={{ width: rem(12), height: rem(12) }}
-                    />
-                  )}
-                </ColorSwatch>
-              </UnstyledButton>
-            );
-          })}
-        </Flex>
+                <IconPlus />
+              </Button>
+            </Flex>
+            <Space h={16} />
+            <Checkbox
+              label="Clear Part"
+              checked={isClear}
+              onChange={(e) => setIsClear(e.currentTarget.checked)}
+            />
+            <Space h={16} />
+            <Text size="sm"> Palette</Text>
+
+            <Flex gap={8} wrap="wrap">
+              {palette.map((color) => {
+                return (
+                  <UnstyledButton
+                    key={color}
+                    variant="transparent"
+                    style={{ border: "red", borderWidth: 2 }}
+                    onClick={() => {
+                      console.log("Changing material color...");
+                      console.log(
+                        selectedMaterialSlug,
+                        color,
+                        isClear ? "clear" : "opaque"
+                      );
+                      if (currentMaterial) {
+                        console.log(currentMaterial.getAlphaCutoff());
+                        if (isClear) {
+                          currentMaterial.setAlphaMode("BLEND");
+                          currentMaterial.setAlphaCutoff(0.9);
+                        } else {
+                          currentMaterial.setAlphaMode("OPAQUE");
+                          currentMaterial.setAlphaCutoff(0);
+                        }
+
+                        const alpha = isClear ? clearPartsAlpha : 1;
+
+                        const baseColorFactor: any = hexToRgba(color, alpha);
+
+                        currentMaterial.pbrMetallicRoughness.setBaseColorFactor(
+                          baseColorFactor
+                        );
+
+                        // Update Materials Map (material data)
+                        setMaterialsMap((prev) => {
+                          prev[currentMaterial.name].color = color;
+                          // TODO: Remove alphaMode (will rely on isClear)
+                          prev[currentMaterial.name].alphaMode = isClear
+                            ? ALPHA_MODE.BLEND
+                            : ALPHA_MODE.OPAQUE;
+
+                          prev[currentMaterial.name].isClear = isClear;
+                          return { ...prev };
+                        });
+                      }
+                    }}>
+                    <ColorSwatch color={color} withShadow={true}>
+                      {color === currentMaterialData?.color && (
+                        <CheckIcon
+                          color={invertColor(color)}
+                          style={{ width: rem(12), height: rem(12) }}
+                        />
+                      )}
+                    </ColorSwatch>
+                  </UnstyledButton>
+                );
+              })}
+            </Flex>
+          </>
+        )}
+
+        {currentColorTab === "COMMERCIAL" && (
+          <>
+            <Text size="sm">Select a brand</Text>
+            <Menu shadow="md">
+              <Menu.Target>
+                <Button style={{ width: "100%" }}>
+                  {commercialPaints[selectedBrand]?.name || "Select a brand"}
+                </Button>
+              </Menu.Target>
+              <Menu.Dropdown mah="60vh" style={{ overflow: "auto" }}>
+                {Object.values(commercialPaints).map((paints: any) => (
+                  <Menu.Item
+                    key={paints.value}
+                    style={{ padding: "2px, 4px" }}
+                    onClick={() => handleSelectedBrand(paints.value)}>
+                    <Text size="sm">{paints.name}</Text>
+                  </Menu.Item>
+                ))}
+              </Menu.Dropdown>
+            </Menu>
+            <Space h={16} />
+            <Checkbox
+              label="Clear Part"
+              checked={isClear}
+              onChange={(e) => setIsClear(e.currentTarget.checked)}
+            />
+            <Space h={16} />
+            <Text size="sm"> Paints</Text>
+            <Flex gap={8} wrap="wrap">
+              {paint.map((paint) => {
+                return (
+                  <UnstyledButton
+                    data-tooltip-id={paint.name}
+                    key={paint.name}
+                    variant="transparent"
+                    style={{ border: "red", borderWidth: 2 }}
+                    onClick={() => {
+                      console.log("Changing material color...");
+                      console.log(
+                        selectedMaterialSlug,
+                        paint.value,
+                        isClear ? "clear" : "opaque"
+                      );
+                      if (currentMaterial) {
+                        console.log(currentMaterial.getAlphaCutoff());
+                        if (isClear) {
+                          currentMaterial.setAlphaMode("BLEND");
+                          currentMaterial.setAlphaCutoff(0.9);
+                        } else {
+                          currentMaterial.setAlphaMode("OPAQUE");
+                          currentMaterial.setAlphaCutoff(0);
+                        }
+
+                        const alpha = isClear ? clearPartsAlpha : 1;
+
+                        const baseColorFactor: any = hexToRgba(
+                          paint.value,
+                          alpha
+                        );
+
+                        currentMaterial.pbrMetallicRoughness.setBaseColorFactor(
+                          baseColorFactor
+                        );
+
+                        (window as any).currentMaterial = currentMaterial;
+
+                        // Update Materials Map (material data)
+                        setMaterialsMap((prev) => {
+                          prev[currentMaterial.name].color = paint.value;
+                          // TODO: Remove alphaMode (will rely on isClear)
+                          prev[currentMaterial.name].alphaMode = isClear
+                            ? ALPHA_MODE.BLEND
+                            : ALPHA_MODE.OPAQUE;
+
+                          prev[currentMaterial.name].isClear = isClear;
+                          return { ...prev };
+                        });
+                      }
+                    }}>
+                    <ColorSwatch color={paint.value} withShadow={true}>
+                      {paint.value === currentMaterialData?.color && (
+                        <CheckIcon
+                          color={invertColor(paint.value)}
+                          style={{ width: rem(12), height: rem(12) }}
+                        />
+                      )}
+                    </ColorSwatch>
+                    <Tooltip
+                      place="top"
+                      id={paint.name}
+                      delayShow={600}
+                      variant="info"
+                      style={{ padding: 6 }}>
+                      {paint.name}
+                    </Tooltip>
+                  </UnstyledButton>
+                );
+              })}
+            </Flex>
+          </>
+        )}
+        <Space h={16} />
       </Box>
     </>
   );
