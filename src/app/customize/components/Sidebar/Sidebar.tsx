@@ -270,7 +270,7 @@ export default function Sidebar() {
             />
             <Space h={16} />
 
-            <Text size="sm">Add to Palette</Text>
+            <Text size="sm">Add Color to Palette</Text>
             <Flex gap={16}>
               <ColorInput
                 value={colorToAdd}
