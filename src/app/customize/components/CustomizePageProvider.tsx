@@ -3,11 +3,18 @@ import { useDisclosure, useElementSize } from "@mantine/hooks";
 import React, {
   createContext,
   ReactNode,
+  useCallback,
   useEffect,
   useRef,
   useState,
 } from "react";
-import { ALPHA_MODE, COLOR_TYPE, MaterialData } from "../../../types";
+import {
+  ALPHA_MODE,
+  PAINT_TYPE,
+  FINISH_TYPE,
+  MaterialData,
+  Paint,
+} from "../../../types";
 import { Material } from "@google/model-viewer/lib/features/scene-graph/material";
 import { hexToRgba, rgbaToHex } from "../helpers";
 import { sazabiMaterialsMap } from "../parts";
@@ -34,18 +41,28 @@ export interface ICustomizePageProviderContext {
   closeSettingsDrawer: () => void;
   sidebarRef: any;
   sidebarHeight: number;
-  currentColorTab: COLOR_TYPE;
-  setCurrentColorTab: React.Dispatch<React.SetStateAction<COLOR_TYPE>>;
+  currentColorTab: PAINT_TYPE;
+  setCurrentColorTab: React.Dispatch<React.SetStateAction<PAINT_TYPE>>;
   isClear: boolean;
   setIsClear: React.Dispatch<React.SetStateAction<boolean>>;
   materialsMap: Record<string, MaterialData>;
   setMaterialsMap: React.Dispatch<
     React.SetStateAction<Record<string, MaterialData>>
   >;
-  paint: Record<string, string>[];
-  setPaint: React.Dispatch<React.SetStateAction<Record<string, string>[]>>;
+  paint: Paint[];
+  setPaint: React.Dispatch<React.SetStateAction<Paint[]>>;
   selectedBrand: string;
   setSelectedBrand: React.Dispatch<React.SetStateAction<string>>;
+  selectedFinish: FINISH_TYPE;
+  setSelectedFinish: React.Dispatch<React.SetStateAction<FINISH_TYPE>>;
+
+  currentMaterial: Material | undefined;
+  currentMaterialData: MaterialData | undefined;
+
+  applyFinishToMaterial: (material: Material, finish: FINISH_TYPE) => void;
+
+  selectedPaint: Paint | null;
+  setSelectedPaint: React.Dispatch<React.SetStateAction<Paint | null>>;
 }
 
 export const CustomizePageProviderContext =
@@ -65,15 +82,19 @@ export function CustomizePageProvider({
   >({});
   const [selectedMaterialSlug, setSelectedMaterialSlug] = useState<
     string | null
-  >(null);
+  >("head.armor.1");
   const [bgColor, setBgColor] = useState<string>("#ffffff");
   const [clearPartsAlpha, setClearPartsAlpha] = useState<number>(0.2);
   const [colorToAdd, setColorToAdd] = useState<string>("#ffffff");
+  const [selectedPaint, setSelectedPaint] = useState<Paint | null>(null);
   const [palette, setPalette] = useState<string[]>(["#ffffff", "#000000"]);
   const [isClear, setIsClear] = useState<boolean>(false);
+  const [selectedFinish, setSelectedFinish] = useState<FINISH_TYPE>(
+    FINISH_TYPE.DEFAULT
+  );
 
   const [selectedBrand, setSelectedBrand] = useState<string>("");
-  const [paint, setPaint] = useState<Record<string, string>[] | []>([]);
+  const [paint, setPaint] = useState<Paint[]>([]);
 
   const [
     controlsDrawerOpened,
@@ -86,8 +107,42 @@ export function CustomizePageProvider({
 
   const { ref: sidebarRef, height: sidebarHeight } = useElementSize();
 
-  const [currentColorTab, setCurrentColorTab] = useState<COLOR_TYPE>(
-    COLOR_TYPE.OWN
+  const [currentColorTab, setCurrentColorTab] = useState<PAINT_TYPE>(
+    PAINT_TYPE.OWN
+  );
+
+  const applyFinishToMaterial = useCallback(
+    (material: Material, finish: FINISH_TYPE) => {
+      switch (finish) {
+        case FINISH_TYPE.MATTE:
+          material.pbrMetallicRoughness.setMetallicFactor(0);
+          material.pbrMetallicRoughness.setRoughnessFactor(1);
+          break;
+        case FINISH_TYPE.CANDY:
+          material.pbrMetallicRoughness.setMetallicFactor(0.9);
+          material.pbrMetallicRoughness.setRoughnessFactor(0.1);
+          break;
+        case FINISH_TYPE.PEARL:
+          material.pbrMetallicRoughness.setMetallicFactor(0.3);
+          material.pbrMetallicRoughness.setRoughnessFactor(0.3);
+          break;
+        case FINISH_TYPE.GLOSS:
+          material.pbrMetallicRoughness.setMetallicFactor(0);
+          material.pbrMetallicRoughness.setRoughnessFactor(0.2);
+          break;
+        case FINISH_TYPE.SEMIGLOSS:
+          material.pbrMetallicRoughness.setMetallicFactor(0);
+          material.pbrMetallicRoughness.setRoughnessFactor(0.5);
+          break;
+        case FINISH_TYPE.METALLIC:
+          material.pbrMetallicRoughness.setMetallicFactor(1);
+          material.pbrMetallicRoughness.setRoughnessFactor(0.3);
+          break;
+        default:
+          break;
+      }
+    },
+    []
   );
 
   useEffect(() => {
@@ -118,36 +173,25 @@ export function CustomizePageProvider({
         Object.values(_materials).forEach((material) => {
           // Color
           material.pbrMetallicRoughness.setBaseColorFactor(
-            hexToRgba(initialMaterialsMap[material.name].color as string)
+            hexToRgba(initialMaterialsMap[material.name].paint.color as string)
           );
 
-          paletteSet.add(initialMaterialsMap[material.name].color);
+          paletteSet.add(initialMaterialsMap[material.name].paint.color);
 
           // Alpha Mode
           material.setAlphaMode(
             initialMaterialsMap[material.name].alphaMode || ALPHA_MODE.OPAQUE
           );
 
-          // TODO: Clear, Metallic, Roughness
+          // TODO: Apply Finish
+          const materialData = initialMaterialsMap[material.name];
+
+          if (materialData) {
+            applyFinishToMaterial(material, materialData.paint.finish);
+          }
         });
 
         setPalette([...(paletteSet as any)]);
-
-        // Materials Map -> save data that aren't in the Material Class
-        // const materialsMap = modelViewer.model.materials.reduce(
-        //   (acc: { [key: string]: MaterialData }, material) => {
-        //     acc[material.name] = {
-        //       color: rgbaToHex(material.pbrMetallicRoughness.baseColorFactor),
-        //       isClear: false,
-        //       isMetallic: false,
-        //       roughness: 0,
-        //       alphaMode: ALPHA_MODE.OPAQUE,
-        //     };
-        //     return acc;
-        //   },
-        //   {}
-        // );
-
         setMaterialsMap(initialMaterialsMap);
       }
     };
@@ -158,9 +202,19 @@ export function CustomizePageProvider({
       modelViewerRef?.current?.removeEventListener("load", handleLoad);
     };
   }, []);
-  // console.log({ materials });
-  console.log({ paint });
-  console.log({ selectedBrand });
+
+  const currentMaterial: Material | undefined =
+    materials[selectedMaterialSlug || ""];
+  const currentMaterialData: MaterialData | undefined =
+    materialsMap[selectedMaterialSlug || ""];
+
+  // Update Palette settings when currentMaterialData changes
+  useEffect(() => {
+    if (currentMaterialData) {
+      setIsClear(currentMaterialData.isClear);
+    }
+  }, [currentMaterialData]);
+
   return (
     <CustomizePageProviderContext.Provider
       value={{
@@ -194,8 +248,15 @@ export function CustomizePageProvider({
         setPaint,
         selectedBrand,
         setSelectedBrand,
-      }}
-    >
+        selectedFinish,
+        setSelectedFinish,
+        currentMaterial,
+        currentMaterialData,
+
+        applyFinishToMaterial,
+        selectedPaint,
+        setSelectedPaint,
+      }}>
       {children}
     </CustomizePageProviderContext.Provider>
   );

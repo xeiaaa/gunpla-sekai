@@ -8,21 +8,27 @@ import {
   ColorPicker,
   ColorSwatch,
   Flex,
+  Group,
   Menu,
+  Radio,
   rem,
   ScrollArea,
   SegmentedControl,
   Space,
   Text,
   UnstyledButton,
+  Tooltip,
 } from "@mantine/core";
+import { notifications } from "@mantine/notifications";
 import { parts } from "../../parts";
 import useCustomizePageContext from "../../hooks/useCustomizePageContext";
 import { IconPlus } from "@tabler/icons-react";
-import { ALPHA_MODE, COLOR_TYPE } from "../../../../types";
+import { ALPHA_MODE, PAINT_TYPE, FINISH_TYPE } from "../../../../types";
 import { hexToRgba, invertColor } from "../../helpers";
 import { commercialPaints } from "../../paints";
-import { Tooltip } from "react-tooltip";
+import { absoluteFill } from "../../helpers/style";
+import { relative } from "path";
+import classes from "./Sidebar.module.css";
 
 export default function Sidebar() {
   const {
@@ -46,22 +52,33 @@ export default function Sidebar() {
     setPaint,
     selectedBrand,
     setSelectedBrand,
+    selectedFinish,
+    setSelectedFinish,
+    currentMaterial,
+    currentMaterialData,
+    applyFinishToMaterial,
+    selectedPaint,
+    setSelectedPaint,
   } = useCustomizePageContext();
 
-  const currentMaterial = materials[selectedMaterialSlug || ""];
-  const currentMaterialData = materialsMap[selectedMaterialSlug || ""];
   const handleSelectedBrand = (e: string) => {
     setSelectedBrand(e);
     setPaint(commercialPaints[e].paints);
   };
-
+  console.log({ selectedPaint });
   return (
     <>
-      <Flex style={{ width: 240, backgroundColor: "#f0f0f0" }} ref={sidebarRef}>
+      <Flex
+        style={{
+          width: 180,
+          backgroundColor: "#f0f0f0",
+          padding: 8,
+        }}
+        ref={sidebarRef}>
         <ScrollArea h={sidebarHeight} w={260} type="never" scrollbarSize={2}>
           <Accordion
             // variant="filled"
-            defaultValue="Head"
+            defaultValue="head"
             style={{ width: "100%" }}>
             {parts.map((part) => {
               return (
@@ -93,10 +110,11 @@ export default function Sidebar() {
           </Accordion>
         </ScrollArea>
       </Flex>
-      <Box
+      <Flex
+        direction="column"
         style={{
-          minWidth: 240,
-          maxWidth: 240,
+          minWidth: 296,
+          maxWidth: 296,
           backgroundColor: "#fafafa",
           padding: 8,
           position: "relative",
@@ -108,24 +126,150 @@ export default function Sidebar() {
           }}>
           <SegmentedControl
             value={currentColorTab}
-            onChange={(e) => setCurrentColorTab(e as COLOR_TYPE)}
+            onChange={(e) => setCurrentColorTab(e as PAINT_TYPE)}
             data={[
-              { label: "My Palette", value: COLOR_TYPE.OWN },
-              { label: "Paints", value: COLOR_TYPE.COMMERCIAL },
+              { label: "My Palette", value: PAINT_TYPE.OWN },
+              { label: "Paints", value: PAINT_TYPE.COMMERCIAL },
             ]}
           />
         </Flex>
-        {!selectedMaterialSlug && (
+        {/* {!selectedMaterialSlug && (
           <>
             <Space h={16} />
             <Text size="sm" color="pink">
               Note: No part is selected
             </Text>
           </>
-        )}
+        )} */}
         <Space h={16} />
         {currentColorTab === "OWN" && (
           <>
+            <Text size="sm">Type</Text>
+            <SegmentedControl
+              value={isClear.toString()}
+              onChange={(e) => {
+                const _isClear = JSON.parse(e);
+                setIsClear(_isClear);
+
+                if (currentMaterial) {
+                  if (_isClear) {
+                    currentMaterial.setAlphaMode("BLEND");
+                    currentMaterial.setAlphaCutoff(0.9);
+                  } else {
+                    currentMaterial.setAlphaMode("OPAQUE");
+                    currentMaterial.setAlphaCutoff(0);
+                  }
+
+                  const alpha = _isClear ? clearPartsAlpha : 1;
+
+                  const baseColorFactor =
+                    currentMaterial.pbrMetallicRoughness.baseColorFactor;
+                  baseColorFactor[3] = alpha;
+                  currentMaterial.pbrMetallicRoughness.setBaseColorFactor(
+                    baseColorFactor
+                  );
+
+                  // Update Materials Map (material data)
+                  setMaterialsMap((prev) => {
+                    prev[currentMaterial.name].alphaMode = _isClear
+                      ? ALPHA_MODE.BLEND
+                      : ALPHA_MODE.OPAQUE;
+
+                    prev[currentMaterial.name].isClear = _isClear;
+                    return { ...prev };
+                  });
+                } else {
+                  notifications.show({
+                    title: "Error!",
+                    message: "Please select a part to edit",
+                    color: "red",
+                  });
+                }
+              }}
+              data={[
+                {
+                  value: "false",
+                  label: "Solid",
+                },
+                {
+                  value: "true",
+                  label: "Clear",
+                },
+              ]}
+            />
+            <Space h={16} />
+
+            <Text size="sm"> Finish</Text>
+            <SegmentedControl
+              value={selectedFinish}
+              onChange={(e) => {
+                setSelectedFinish(e as FINISH_TYPE);
+
+                if (currentMaterial) {
+                  applyFinishToMaterial(currentMaterial, e as FINISH_TYPE);
+                }
+              }}
+              data={[
+                {
+                  value: FINISH_TYPE.MATTE,
+                  label: (
+                    <Tooltip label="Flat / Matte">
+                      <span>F</span>
+                    </Tooltip>
+                  ),
+                },
+                {
+                  value: FINISH_TYPE.GLOSS,
+                  label: (
+                    <Tooltip label="Gloss">
+                      <span>G</span>
+                    </Tooltip>
+                  ),
+                },
+                {
+                  value: FINISH_TYPE.SEMIGLOSS,
+                  label: (
+                    <Tooltip label="SemiGloss">
+                      <span>SG</span>
+                    </Tooltip>
+                  ),
+                },
+                {
+                  value: FINISH_TYPE.METALLIC,
+                  label: (
+                    <Tooltip label="Metallic">
+                      <span>M</span>
+                    </Tooltip>
+                  ),
+                },
+                {
+                  value: FINISH_TYPE.CANDY,
+                  label: (
+                    <Tooltip label="Candy">
+                      <span>C</span>
+                    </Tooltip>
+                  ),
+                },
+                {
+                  value: FINISH_TYPE.PEARL,
+                  label: (
+                    <Tooltip label="Pearl">
+                      <span>P</span>
+                    </Tooltip>
+                  ),
+                },
+                {
+                  value: FINISH_TYPE.DEFAULT,
+                  label: (
+                    <Tooltip label="Default">
+                      <span>X</span>
+                    </Tooltip>
+                  ),
+                },
+              ]}
+            />
+            <Space h={16} />
+
             <Text size="sm">Add to Palette</Text>
             <Flex gap={16}>
               <ColorInput
@@ -146,12 +290,6 @@ export default function Sidebar() {
                 <IconPlus />
               </Button>
             </Flex>
-            <Space h={16} />
-            <Checkbox
-              label="Clear Part"
-              checked={isClear}
-              onChange={(e) => setIsClear(e.currentTarget.checked)}
-            />
             <Space h={16} />
             <Text size="sm"> Palette</Text>
 
@@ -198,6 +336,14 @@ export default function Sidebar() {
                           prev[currentMaterial.name].isClear = isClear;
                           return { ...prev };
                         });
+
+                        setSelectedPaint(null);
+                      } else {
+                        notifications.show({
+                          title: "Error!",
+                          message: "Please select a part to edit",
+                          color: "red",
+                        });
                       }
                     }}>
                     <ColorSwatch color={color} withShadow={true}>
@@ -235,89 +381,103 @@ export default function Sidebar() {
                 ))}
               </Menu.Dropdown>
             </Menu>
-            <Space h={16} />
-            <Checkbox
-              label="Clear Part"
-              checked={isClear}
-              onChange={(e) => setIsClear(e.currentTarget.checked)}
-            />
+
             <Space h={16} />
             <Text size="sm"> Paints</Text>
-            <Flex gap={8} wrap="wrap">
-              {paint.map((paint) => {
-                return (
-                  <UnstyledButton
-                    data-tooltip-id={paint.name}
-                    key={paint.name}
-                    variant="transparent"
-                    style={{ border: "red", borderWidth: 2 }}
-                    onClick={() => {
-                      console.log("Changing material color...");
-                      console.log(
-                        selectedMaterialSlug,
-                        paint.value,
-                        isClear ? "clear" : "opaque"
-                      );
-                      if (currentMaterial) {
-                        console.log(currentMaterial.getAlphaCutoff());
-                        if (isClear) {
-                          currentMaterial.setAlphaMode("BLEND");
-                          currentMaterial.setAlphaCutoff(0.9);
-                        } else {
-                          currentMaterial.setAlphaMode("OPAQUE");
-                          currentMaterial.setAlphaCutoff(0);
-                        }
+            {selectedBrand ? (
+              <Flex flex={1} style={{ position: "relative" }}>
+                <Flex
+                  gap={8}
+                  wrap="wrap"
+                  align="flex-start"
+                  className={classes.noScrollbar}
+                  style={{
+                    ...absoluteFill,
+                    overflow: "scroll",
+                  }}>
+                  {paint.map((paint) => {
+                    return (
+                      <UnstyledButton
+                        data-tooltip-id={paint.name}
+                        key={paint.name}
+                        variant="transparent"
+                        style={{ border: "red", borderWidth: 2 }}
+                        onClick={() => {
+                          console.log("Changing material color...");
+                          console.log(
+                            selectedMaterialSlug,
+                            paint.color,
+                            isClear ? "clear" : "opaque"
+                          );
+                          if (currentMaterial) {
+                            console.log(currentMaterial.getAlphaCutoff());
+                            if (isClear) {
+                              currentMaterial.setAlphaMode("BLEND");
+                              currentMaterial.setAlphaCutoff(0.9);
+                            } else {
+                              currentMaterial.setAlphaMode("OPAQUE");
+                              currentMaterial.setAlphaCutoff(0);
+                            }
 
-                        const alpha = isClear ? clearPartsAlpha : 1;
+                            const alpha = isClear ? clearPartsAlpha : 1;
 
-                        const baseColorFactor: any = hexToRgba(
-                          paint.value,
-                          alpha
-                        );
+                            const baseColorFactor: any = hexToRgba(
+                              paint.color,
+                              alpha
+                            );
 
-                        currentMaterial.pbrMetallicRoughness.setBaseColorFactor(
-                          baseColorFactor
-                        );
+                            currentMaterial.pbrMetallicRoughness.setBaseColorFactor(
+                              baseColorFactor
+                            );
 
-                        (window as any).currentMaterial = currentMaterial;
+                            applyFinishToMaterial(
+                              currentMaterial,
+                              paint.finish
+                            );
 
-                        // Update Materials Map (material data)
-                        setMaterialsMap((prev) => {
-                          prev[currentMaterial.name].color = paint.value;
-                          // TODO: Remove alphaMode (will rely on isClear)
-                          prev[currentMaterial.name].alphaMode = isClear
-                            ? ALPHA_MODE.BLEND
-                            : ALPHA_MODE.OPAQUE;
+                            (window as any).currentMaterial = currentMaterial;
 
-                          prev[currentMaterial.name].isClear = isClear;
-                          return { ...prev };
-                        });
-                      }
-                    }}>
-                    <ColorSwatch color={paint.value} withShadow={true}>
-                      {paint.value === currentMaterialData?.color && (
-                        <CheckIcon
-                          color={invertColor(paint.value)}
-                          style={{ width: rem(12), height: rem(12) }}
-                        />
-                      )}
-                    </ColorSwatch>
-                    <Tooltip
-                      place="top"
-                      id={paint.name}
-                      delayShow={600}
-                      variant="info"
-                      style={{ padding: 6 }}>
-                      {paint.name}
-                    </Tooltip>
-                  </UnstyledButton>
-                );
-              })}
-            </Flex>
+                            // Update Materials Map (material data)
+                            setMaterialsMap((prev) => {
+                              prev[currentMaterial.name].color = paint.color;
+                              // TODO: Remove alphaMode (will rely on isClear)
+                              prev[currentMaterial.name].alphaMode = isClear
+                                ? ALPHA_MODE.BLEND
+                                : ALPHA_MODE.OPAQUE;
+
+                              prev[currentMaterial.name].isClear = isClear;
+                              return { ...prev };
+                            });
+
+                            setSelectedPaint(paint);
+                          }
+                        }}>
+                        <Tooltip label={`${paint.code} ${paint.name}`.trim()}>
+                          <ColorSwatch color={paint.color} withShadow={true}>
+                            {paint.color === selectedPaint?.color &&
+                              selectedPaint.type === PAINT_TYPE.COMMERCIAL &&
+                              paint.code === selectedPaint.code && (
+                                <CheckIcon
+                                  color={invertColor(paint.color)}
+                                  style={{ width: rem(12), height: rem(12) }}
+                                />
+                              )}
+                          </ColorSwatch>
+                        </Tooltip>
+                      </UnstyledButton>
+                    );
+                  })}
+                </Flex>
+              </Flex>
+            ) : (
+              <Text size="sm" color="pink">
+                Note: Please select a brand of paint above
+              </Text>
+            )}
           </>
         )}
         <Space h={16} />
-      </Box>
+      </Flex>
     </>
   );
 }

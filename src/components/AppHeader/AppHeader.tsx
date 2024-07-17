@@ -4,15 +4,22 @@ import { Group, Button, Box } from "@mantine/core";
 import classes from "./AppHeader.module.css";
 import Link from "next/link";
 import { HeaderAuthMenu } from "./HeaderAuthMenu";
+import Image from "next/image";
 
 export function AppHeader() {
   return (
     <Box>
       <header className={classes.header}>
         <Group justify="space-between" h="100%">
-          {/* <MantineLogo size={30} /> */}
           <Link href="/" className={classes.logo}>
-            <span>Gunpla Sekai</span>
+            {/* <span>Gunpla Sekai</span> */}
+            <Image
+              src="/logo.png"
+              alt="Gunpla Sekai Logo"
+              width={100}
+              height={46}
+              style={{ marginTop: 6 }}
+            />
           </Link>
           <Group h="100%" gap={5} visibleFrom="sm">
             <Group h="100%">

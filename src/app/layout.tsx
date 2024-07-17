@@ -3,6 +3,8 @@ import React from "react";
 import { MantineProvider, ColorSchemeScript } from "@mantine/core";
 import { theme } from "./theme";
 import { AppShell_ } from "../components/AppShell_/AppShell_";
+import "@mantine/notifications/styles.css";
+import { Notifications } from "@mantine/notifications";
 
 export const metadata = {
   title: "Gunpla Sekai",
@@ -22,6 +24,7 @@ export default function RootLayout({ children }: { children: any }) {
       </head>
       <body>
         <MantineProvider theme={theme}>
+          <Notifications />
           <AppShell_>{children}</AppShell_>
         </MantineProvider>
       </body>
