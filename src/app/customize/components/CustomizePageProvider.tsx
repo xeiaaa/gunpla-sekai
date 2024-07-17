@@ -7,8 +7,10 @@ import React, {
   useRef,
   useState,
 } from "react";
-import { COLOR_TYPE } from "../../../types";
+import { ALPHA_MODE, COLOR_TYPE, MaterialData } from "../../../types";
 import { Material } from "@google/model-viewer/lib/features/scene-graph/material";
+import { hexToRgba, rgbaToHex } from "../helpers";
+import { sazabiMaterialsMap } from "../parts";
 
 export interface ICustomizePageProviderContext {
   modelViewerRef: any;
@@ -35,6 +37,10 @@ export interface ICustomizePageProviderContext {
   setCurrentColorTab: React.Dispatch<React.SetStateAction<COLOR_TYPE>>;
   isClear: boolean;
   setIsClear: React.Dispatch<React.SetStateAction<boolean>>;
+  materialsMap: Record<string, MaterialData>;
+  setMaterialsMap: React.Dispatch<
+    React.SetStateAction<Record<string, MaterialData>>
+  >;
 }
 
 export const CustomizePageProviderContext =
@@ -49,6 +55,9 @@ export function CustomizePageProvider({
 }: CustomizePageProviderProps) {
   const modelViewerRef = useRef<ModelViewerElement>(null);
   const [materials, setMaterials] = useState<Record<string, Material>>({});
+  const [materialsMap, setMaterialsMap] = useState<
+    Record<string, MaterialData>
+  >({});
   const [selectedMaterialSlug, setSelectedMaterialSlug] = useState<
     string | null
   >(null);
@@ -79,15 +88,59 @@ export function CustomizePageProvider({
       if (!modelViewer) return;
 
       if (modelViewer.model) {
-        setMaterials(
-          modelViewer.model.materials.reduce(
-            (acc: { [key: string]: Material }, material) => {
-              acc[material.name] = material;
-              return acc;
-            },
-            {}
-          )
+        // Materials -> use this to update properties directly
+        const _materials = modelViewer.model.materials.reduce(
+          (acc: { [key: string]: Material }, material) => {
+            acc[material.name] = material;
+            return acc;
+          },
+          {}
         );
+        console.log("******", _materials);
+        setMaterials(_materials);
+
+        // This will come from the database later...
+        const initialMaterialsMap = { ...sazabiMaterialsMap };
+
+        const paletteSet = new Set();
+        paletteSet.add("#ffffff");
+        paletteSet.add("#000000");
+
+        // Apply the initial material properties
+        Object.values(_materials).forEach((material) => {
+          // Color
+          material.pbrMetallicRoughness.setBaseColorFactor(
+            hexToRgba(initialMaterialsMap[material.name].color as string)
+          );
+
+          paletteSet.add(initialMaterialsMap[material.name].color);
+
+          // Alpha Mode
+          material.setAlphaMode(
+            initialMaterialsMap[material.name].alphaMode || ALPHA_MODE.OPAQUE
+          );
+
+          // TODO: Clear, Metallic, Roughness
+        });
+
+        setPalette([...(paletteSet as any)]);
+
+        // Materials Map -> save data that aren't in the Material Class
+        // const materialsMap = modelViewer.model.materials.reduce(
+        //   (acc: { [key: string]: MaterialData }, material) => {
+        //     acc[material.name] = {
+        //       color: rgbaToHex(material.pbrMetallicRoughness.baseColorFactor),
+        //       isClear: false,
+        //       isMetallic: false,
+        //       roughness: 0,
+        //       alphaMode: ALPHA_MODE.OPAQUE,
+        //     };
+        //     return acc;
+        //   },
+        //   {}
+        // );
+
+        setMaterialsMap(initialMaterialsMap);
       }
     };
 
@@ -97,7 +150,7 @@ export function CustomizePageProvider({
       modelViewerRef?.current?.removeEventListener("load", handleLoad);
     };
   }, []);
-
+  console.log({ materials });
   return (
     <CustomizePageProviderContext.Provider
       value={{
@@ -125,6 +178,8 @@ export function CustomizePageProvider({
         setCurrentColorTab,
         isClear,
         setIsClear,
+        materialsMap,
+        setMaterialsMap,
       }}>
       {children}
     </CustomizePageProviderContext.Provider>

@@ -3,10 +3,12 @@ import {
   Box,
   Button,
   Checkbox,
+  CheckIcon,
   ColorInput,
   ColorPicker,
   ColorSwatch,
   Flex,
+  rem,
   ScrollArea,
   SegmentedControl,
   Space,
@@ -16,8 +18,8 @@ import {
 import { parts } from "../../parts";
 import useCustomizePageContext from "../../hooks/useCustomizePageContext";
 import { IconPlus } from "@tabler/icons-react";
-import { COLOR_TYPE } from "../../../../types";
-import { hexToRgba } from "../../helpers";
+import { ALPHA_MODE, COLOR_TYPE } from "../../../../types";
+import { hexToRgba, invertColor } from "../../helpers";
 
 export default function Sidebar() {
   const {
@@ -35,9 +37,12 @@ export default function Sidebar() {
     isClear,
     setIsClear,
     clearPartsAlpha,
+    materialsMap,
+    setMaterialsMap,
   } = useCustomizePageContext();
 
   const currentMaterial = materials[selectedMaterialSlug || ""];
+  const currentMaterialData = materialsMap[selectedMaterialSlug || ""];
 
   return (
     <>
@@ -53,21 +58,20 @@ export default function Sidebar() {
                   <Accordion.Control>{part.label}</Accordion.Control>
                   <Accordion.Panel>
                     {part.materials.map((material) => {
+                      const [slug, label] = material;
                       return (
                         <Button
                           variant="subtle"
                           color={
-                            selectedMaterialSlug === material.slug
-                              ? "blue"
-                              : "gray"
+                            selectedMaterialSlug === slug ? "blue" : "gray"
                           }
-                          key={material.slug}
+                          key={slug}
                           style={{ width: "100%" }}
                           onClick={() => {
-                            console.log(material.slug);
-                            setSelectedMaterialSlug(material.slug);
+                            console.log(slug);
+                            setSelectedMaterialSlug(slug);
                           }}>
-                          {material.label}
+                          {label}
                         </Button>
                       );
                     })}
@@ -135,7 +139,7 @@ export default function Sidebar() {
         <Space h={16} />
         <Text size="sm"> Palette</Text>
 
-        <Flex gap={8}>
+        <Flex gap={8} wrap="wrap">
           {palette.map((color) => {
             return (
               <UnstyledButton
@@ -166,9 +170,28 @@ export default function Sidebar() {
                     currentMaterial.pbrMetallicRoughness.setBaseColorFactor(
                       baseColorFactor
                     );
+
+                    // Update Materials Map (material data)
+                    setMaterialsMap((prev) => {
+                      prev[currentMaterial.name].color = color;
+                      // TODO: Remove alphaMode (will rely on isClear)
+                      prev[currentMaterial.name].alphaMode = isClear
+                        ? ALPHA_MODE.BLEND
+                        : ALPHA_MODE.OPAQUE;
+
+                      prev[currentMaterial.name].isClear = isClear;
+                      return { ...prev };
+                    });
                   }
                 }}>
-                <ColorSwatch color={color} withShadow={true}></ColorSwatch>
+                <ColorSwatch color={color} withShadow={true}>
+                  {color === currentMaterialData?.color && (
+                    <CheckIcon
+                      color={invertColor(color)}
+                      style={{ width: rem(12), height: rem(12) }}
+                    />
+                  )}
+                </ColorSwatch>
               </UnstyledButton>
             );
           })}

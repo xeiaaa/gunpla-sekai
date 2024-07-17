@@ -28,7 +28,10 @@ export const invertColor = (hex: string) => {
   return brightness > 0.5 ? "#000000" : "#FFFFFF";
 };
 
-export const hexToRgba = (hex: string, opacity?: number) => {
+export const hexToRgba = (
+  hex: string,
+  opacity?: number
+): [number, number, number, number] => {
   // Remove the hash at the start if it's there
   hex = hex.replace(/^#/, "");
 
@@ -39,4 +42,23 @@ export const hexToRgba = (hex: string, opacity?: number) => {
 
   // Return the rgba string
   return [r, g, b, opacity || 1];
+};
+
+export const rgbaToHex = (rgba: [number, number, number, number]): string => {
+  const [r, g, b, a] = rgba;
+
+  // Helper function to convert a number to a two-digit hex string
+  const toHex = (value: number): string => {
+    const hex = Math.round(value * 255).toString(16);
+    return hex.padStart(2, "0");
+  };
+
+  // Convert each component to hex
+  const redHex = toHex(r);
+  const greenHex = toHex(g);
+  const blueHex = toHex(b);
+  const alphaHex = toHex(a); // Scale alpha from 0-1 to 0-255
+
+  // Combine all components into a single hex string
+  return `#${redHex}${greenHex}${blueHex}${alphaHex}`;
 };
