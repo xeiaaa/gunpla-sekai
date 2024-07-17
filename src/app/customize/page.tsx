@@ -1,6 +1,6 @@
 "use client";
 
-import { Box, Button, Flex, Stack } from "@mantine/core";
+import { Box, Button, Flex, Loader, Stack, Text } from "@mantine/core";
 
 import { handleSaveImage, invertColor } from "./helpers";
 import useCustomizePageContext from "./hooks/useCustomizePageContext";
@@ -16,6 +16,8 @@ export default function CustomizePage() {
 
     openControlsDrawer,
     openSettingsDrawer,
+
+    isLoadingModel,
   } = useCustomizePageContext();
 
   useEffect(() => {
@@ -72,9 +74,20 @@ export default function CustomizePage() {
               width: "100%",
               backgroundColor: bgColor,
             }}>
-            <div className="progress-bar hide" slot="progress-bar">
-              <div className="update-bar"></div>
-            </div>
+            {isLoadingModel && (
+              <Flex
+                flex={1}
+                direction="column"
+                gap={16}
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  height: "100%",
+                }}>
+                <Loader />
+                <Text>Loading 3d model...</Text>
+              </Flex>
+            )}
           </model-viewer>
         </Box>
       </Flex>

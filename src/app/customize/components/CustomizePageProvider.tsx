@@ -16,9 +16,8 @@ import {
   Paint,
 } from "../../../types";
 import { Material } from "@google/model-viewer/lib/features/scene-graph/material";
-import { hexToRgba, rgbaToHex } from "../helpers";
+import { hexToRgba } from "../helpers";
 import { sazabiMaterialsMap } from "../parts";
-import { commercialPaints } from "../paints";
 
 export interface ICustomizePageProviderContext {
   modelViewerRef: any;
@@ -63,6 +62,7 @@ export interface ICustomizePageProviderContext {
 
   selectedPaint: Paint | null;
   setSelectedPaint: React.Dispatch<React.SetStateAction<Paint | null>>;
+  isLoadingModel: boolean;
 }
 
 export const CustomizePageProviderContext =
@@ -76,6 +76,7 @@ export function CustomizePageProvider({
   children,
 }: CustomizePageProviderProps) {
   const modelViewerRef = useRef<ModelViewerElement>(null);
+  const [isLoadingModel, setIsLoadingModel] = useState(true);
   const [materials, setMaterials] = useState<Record<string, Material>>({});
   const [materialsMap, setMaterialsMap] = useState<
     Record<string, MaterialData>
@@ -193,6 +194,8 @@ export function CustomizePageProvider({
 
         setPalette([...(paletteSet as any)]);
         setMaterialsMap(initialMaterialsMap);
+        console.log("FINISHED LOADING...");
+        setIsLoadingModel(false);
       }
     };
 
@@ -201,7 +204,7 @@ export function CustomizePageProvider({
     return () => {
       modelViewerRef?.current?.removeEventListener("load", handleLoad);
     };
-  }, []);
+  }, [applyFinishToMaterial]);
 
   const currentMaterial: Material | undefined =
     materials[selectedMaterialSlug || ""];
@@ -256,6 +259,8 @@ export function CustomizePageProvider({
         applyFinishToMaterial,
         selectedPaint,
         setSelectedPaint,
+
+        isLoadingModel,
       }}>
       {children}
     </CustomizePageProviderContext.Provider>
