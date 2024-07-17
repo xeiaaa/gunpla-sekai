@@ -24,8 +24,8 @@ export default function HomePage() {
             <Text className={classes.description} mt={30}>
               {`At Gunpla Sekai, we're dedicated to providing the ultimate Gunpla
               experience. Explore our comprehensive shop for the latest kits and
-              tools, customize your builds with our advanced 3D modeling
-              services, and share your creations with a community of passionate
+              tools, customize your builds with our 3D
+              configurator, and share your creations with a community of passionate
               builders. Whether you're shopping, creating, or showcasing, Gunpla
               Sekai is your go-to destination for all things Gunpla.`}
             </Text>
