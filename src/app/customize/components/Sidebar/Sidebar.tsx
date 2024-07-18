@@ -29,6 +29,7 @@ import { commercialPaints } from "../../paints";
 import { absoluteFill } from "../../helpers/style";
 import { relative } from "path";
 import classes from "./Sidebar.module.css";
+import Fun from "./Fun";
 
 export default function Sidebar() {
   const {
@@ -70,17 +71,16 @@ export default function Sidebar() {
   return (
     <>
       <Flex
+        className={classes.sidebarMobile}
         style={{
-          width: 180,
+          maxWidth: 180,
           backgroundColor: "#f0f0f0",
           padding: 8,
         }}
-        ref={sidebarRef}>
+        ref={sidebarRef}
+      >
         <ScrollArea h={sidebarHeight} w={260} type="never" scrollbarSize={2}>
-          <Accordion
-            // variant="filled"
-            defaultValue="head"
-            style={{ width: "100%" }}>
+          <Accordion defaultValue="head" style={{ width: "100%" }}>
             {parts.map((part) => {
               return (
                 <Accordion.Item value={part.slug} key={part.slug}>
@@ -99,7 +99,8 @@ export default function Sidebar() {
                           onClick={() => {
                             console.log(slug);
                             setSelectedMaterialSlug(slug);
-                          }}>
+                          }}
+                        >
                           {label}
                         </Button>
                       );
@@ -111,20 +112,24 @@ export default function Sidebar() {
           </Accordion>
         </ScrollArea>
       </Flex>
+
       <Flex
         direction="column"
+        className={classes.sidebarMobile}
         style={{
-          minWidth: 296,
+          minWidth: 188,
           maxWidth: 296,
           backgroundColor: "#fafafa",
           padding: 8,
           position: "relative",
-        }}>
+        }}
+      >
         <Flex
           style={{
             width: "100%",
             justifyContent: "center",
-          }}>
+          }}
+        >
           <SegmentedControl
             value={currentColorTab}
             onChange={(e) => setCurrentColorTab(e as PAINT_TYPE)}
@@ -134,14 +139,7 @@ export default function Sidebar() {
             ]}
           />
         </Flex>
-        {/* {!selectedMaterialSlug && (
-          <>
-            <Space h={16} />
-            <Text size="sm" color="pink">
-              Note: No part is selected
-            </Text>
-          </>
-        )} */}
+
         <Space h={16} />
         {currentColorTab === "OWN" && (
           <>
@@ -170,7 +168,6 @@ export default function Sidebar() {
                     baseColorFactor
                   );
 
-                  // Update Materials Map (material data)
                   setMaterialsMap((prev) => {
                     prev[currentMaterial.name].alphaMode = _isClear
                       ? ALPHA_MODE.BLEND
@@ -295,7 +292,8 @@ export default function Sidebar() {
                     }
                     return prev;
                   });
-                }}>
+                }}
+              >
                 <IconPlus />
               </Button>
             </Flex>
@@ -361,7 +359,8 @@ export default function Sidebar() {
                           color: "red",
                         });
                       }
-                    }}>
+                    }}
+                  >
                     <ColorSwatch color={color} withShadow={true}>
                       {color === currentMaterialData?.color && (
                         <CheckIcon
@@ -391,7 +390,8 @@ export default function Sidebar() {
                   <Menu.Item
                     key={paints.value}
                     style={{ padding: "2px, 4px" }}
-                    onClick={() => handleSelectedBrand(paints.value)}>
+                    onClick={() => handleSelectedBrand(paints.value)}
+                  >
                     <Text size="sm">{paints.name}</Text>
                   </Menu.Item>
                 ))}
@@ -410,7 +410,8 @@ export default function Sidebar() {
                   style={{
                     ...absoluteFill,
                     overflow: "scroll",
-                  }}>
+                  }}
+                >
                   {paint.map((paint) => {
                     return (
                       <UnstyledButton
@@ -467,7 +468,8 @@ export default function Sidebar() {
 
                             setSelectedPaint(paint);
                           }
-                        }}>
+                        }}
+                      >
                         <Tooltip label={`${paint.code} ${paint.name}`.trim()}>
                           <ColorSwatch color={paint.color} withShadow={true}>
                             {paint.color === selectedPaint?.color &&
@@ -494,161 +496,7 @@ export default function Sidebar() {
         )}
         <Space h={16} />
 
-        <Flex
-          style={{
-            marginTop: "auto",
-            gap: 8,
-            flexDirection: "column",
-          }}>
-          <Text size="sm">Fun</Text>
-          <Flex
-            style={{
-              flexDirection: "row",
-              flexWrap: "wrap",
-              rowGap: 0,
-              columnGap: 16,
-            }}>
-            <Button
-              variant="transparent"
-              size="xs"
-              style={{ padding: 0 }}
-              onClick={() => {
-                Object.values(materials).forEach((material) => {
-                  material.pbrMetallicRoughness.setBaseColorFactor([
-                    Math.random(),
-                    Math.random(),
-                    Math.random(),
-                    material.pbrMetallicRoughness.baseColorFactor[3],
-                  ]);
-                });
-              }}>
-              Randomize Color
-            </Button>
-            <Button
-              variant="transparent"
-              size="xs"
-              style={{ padding: 0 }}
-              onClick={() => {
-                Object.values(materials).forEach((material) => {
-                  material.setAlphaMode(ALPHA_MODE.OPAQUE);
-                  applyFinishToMaterial(material, FINISH_TYPE.MATTE);
-                });
-              }}>
-              Matte
-            </Button>
-            <Button
-              variant="transparent"
-              size="xs"
-              style={{ padding: 0 }}
-              onClick={() => {
-                Object.values(materials).forEach((material) => {
-                  material.setAlphaMode(ALPHA_MODE.OPAQUE);
-                  applyFinishToMaterial(material, FINISH_TYPE.GLOSS);
-                });
-              }}>
-              Gloss
-            </Button>
-            <Button
-              variant="transparent"
-              size="xs"
-              style={{ padding: 0 }}
-              onClick={() => {
-                Object.values(materials).forEach((material) => {
-                  material.setAlphaMode(ALPHA_MODE.OPAQUE);
-                  applyFinishToMaterial(material, FINISH_TYPE.SEMIGLOSS);
-                });
-              }}>
-              Semi Gloss
-            </Button>
-            <Button
-              variant="transparent"
-              size="xs"
-              style={{ padding: 0 }}
-              onClick={() => {
-                Object.values(materials).forEach((material) => {
-                  material.setAlphaMode(ALPHA_MODE.OPAQUE);
-                  applyFinishToMaterial(material, FINISH_TYPE.METALLIC);
-                });
-              }}>
-              Metallic
-            </Button>
-            <Button
-              variant="transparent"
-              size="xs"
-              style={{ padding: 0 }}
-              onClick={() => {
-                Object.values(materials).forEach((material) => {
-                  material.setAlphaMode(ALPHA_MODE.OPAQUE);
-                  applyFinishToMaterial(material, FINISH_TYPE.CANDY);
-                });
-              }}>
-              Candy
-            </Button>
-            <Button
-              variant="transparent"
-              size="xs"
-              style={{ padding: 0 }}
-              onClick={() => {
-                Object.values(materials).forEach((material) => {
-                  material.setAlphaMode(ALPHA_MODE.OPAQUE);
-                  applyFinishToMaterial(material, FINISH_TYPE.PEARL);
-                });
-              }}>
-              Pearl
-            </Button>
-            <Button
-              variant="transparent"
-              size="xs"
-              style={{ padding: 0 }}
-              onClick={() => {
-                Object.values(materials).forEach((material) => {
-                  // material
-                  if (material.name.includes("armor")) {
-                    material.setAlphaMode(ALPHA_MODE.BLEND);
-                    material.setAlphaCutoff(0.9);
-                    material.pbrMetallicRoughness.setBaseColorFactor([
-                      material.pbrMetallicRoughness.baseColorFactor[0],
-                      material.pbrMetallicRoughness.baseColorFactor[1],
-                      material.pbrMetallicRoughness.baseColorFactor[2],
-                      clearPartsAlpha,
-                    ]);
-                  }
-                });
-              }}>
-              Clear Outer Armors
-            </Button>
-            <Button
-              variant="transparent"
-              size="xs"
-              style={{ padding: 0 }}
-              onClick={() => {
-                Object.values(materials).forEach((material) => {
-                  // material
-                  material.setAlphaMode(ALPHA_MODE.BLEND);
-                  material.setAlphaCutoff(0.9);
-                  material.pbrMetallicRoughness.setBaseColorFactor([
-                    material.pbrMetallicRoughness.baseColorFactor[0],
-                    material.pbrMetallicRoughness.baseColorFactor[1],
-                    material.pbrMetallicRoughness.baseColorFactor[2],
-                    clearPartsAlpha,
-                  ]);
-                });
-              }}>
-              Everything Clear
-            </Button>
-
-            <Button
-              variant="transparent"
-              size="xs"
-              color="pink"
-              style={{ padding: 0 }}
-              onClick={() => {
-                reset();
-              }}>
-              <strong>Reset</strong>
-            </Button>
-          </Flex>
-        </Flex>
+        <Fun />
       </Flex>
     </>
   );

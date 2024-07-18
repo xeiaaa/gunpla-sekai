@@ -5,3 +5,27 @@
 .noScrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
 }
+
+.sidebarMobile {
+  @media (max-width: em(800)) {
+    display: none;
+  }
+}
+
+.funMobile {
+  display: none;
+  @media (max-width: em(800)) {
+    display: block;
+  }
+}
+
+.modelNavMobile {
+  @media (max-width: em(500)) {
+    display: none;
+  }
+}
+.modelIconMobile {
+  @media (min-width: em(500)) {
+    display: none;
+  }
+}
