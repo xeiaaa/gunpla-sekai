@@ -47,6 +47,9 @@ export default function CustomizePage() {
   useEffect(() => {
     import("@google/model-viewer").catch(console.error);
   }, []);
+
+  const part = parts.find((part) => part.label === partsSelected);
+
   return (
     <>
       <Drawers />
@@ -59,19 +62,16 @@ export default function CustomizePage() {
               width: "100%",
               position: "relative",
               // minWidth: "420px",
-            }}
-          >
+            }}>
             <Stack
-              style={{ position: "absolute", top: 8, right: 8, zIndex: 100 }}
-            >
+              style={{ position: "absolute", top: 8, right: 8, zIndex: 100 }}>
               <Button
                 variant="outline"
                 color={invertColor(bgColor)}
                 onClick={() => {
                   openControlsDrawer();
                 }}
-                className={classes.modelNavMobile}
-              >
+                className={classes.modelNavMobile}>
                 Controls
               </Button>
               <Flex
@@ -84,8 +84,7 @@ export default function CustomizePage() {
                 justify="center"
                 onClick={() => {
                   openControlsDrawer();
-                }}
-              >
+                }}>
                 <IconAdjustments size={14} />
               </Flex>
               <Button
@@ -94,8 +93,7 @@ export default function CustomizePage() {
                 onClick={() => {
                   openSettingsDrawer();
                 }}
-                className={classes.modelNavMobile}
-              >
+                className={classes.modelNavMobile}>
                 Settings
               </Button>
               <Flex
@@ -109,8 +107,7 @@ export default function CustomizePage() {
                 onClick={() => {
                   openSettingsDrawer();
                 }}
-                bg="#505050"
-              >
+                bg="#505050">
                 <IconSettings size={14} color="white" />
               </Flex>
               <Button
@@ -119,8 +116,7 @@ export default function CustomizePage() {
                 onClick={() => {
                   handleSaveImage(modelViewerRef);
                 }}
-                className={classes.modelNavMobile}
-              >
+                className={classes.modelNavMobile}>
                 Download
               </Button>
               <Flex
@@ -133,8 +129,7 @@ export default function CustomizePage() {
                 justify="center"
                 onClick={() => {
                   openSettingsDrawer();
-                }}
-              >
+                }}>
                 <IconDownload size={14} />
               </Flex>
             </Stack>
@@ -150,8 +145,7 @@ export default function CustomizePage() {
                 height: "100%",
                 width: "100%",
                 backgroundColor: bgColor,
-              }}
-            >
+              }}>
               {isLoadingModel && (
                 <Flex
                   flex={1}
@@ -161,8 +155,7 @@ export default function CustomizePage() {
                     justifyContent: "center",
                     alignItems: "center",
                     height: "100%",
-                  }}
-                >
+                  }}>
                   <Loader />
                   <Text>Loading 3d model...</Text>
                 </Flex>
@@ -178,13 +171,11 @@ export default function CustomizePage() {
               onClose={close}
               position="bottom"
               size={300}
-              overlayProps={{ opacity: "0" }}
-            >
+              overlayProps={{ opacity: "0" }}>
               <Tabs
                 defaultValue="parts"
                 orientation="horizontal"
-                variant="outline"
-              >
+                variant="outline">
                 <Tabs.List>
                   <Tabs.Tab value="parts">Parts</Tabs.Tab>
                   <Tabs.Tab value="paints">Paints</Tabs.Tab>
@@ -209,9 +200,9 @@ export default function CustomizePage() {
                     {partsSelected && (
                       <SegmentedControl
                         value={pieceSelected}
-                        data={parts
-                          .find((part) => part.label === partsSelected)
-                          .materials.map((material) => material[1])}
+                        data={
+                          part?.materials.map((material) => material[1]) || []
+                        }
                         style={{ overflow: "auto" }}
                         onChange={(e) => setPieceSelected(e)}
                       />

@@ -33,3 +33,9 @@ export interface Paint {
   color: string;
   type: PAINT_TYPE;
 }
+
+export interface Part {
+  slug: string;
+  label: string;
+  materials: [string, string][];
+}

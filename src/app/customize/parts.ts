@@ -1,6 +1,12 @@
-import { ALPHA_MODE, FINISH_TYPE, MaterialData, PAINT_TYPE } from "../../types";
+import {
+  ALPHA_MODE,
+  FINISH_TYPE,
+  MaterialData,
+  PAINT_TYPE,
+  Part,
+} from "../../types";
 
-export const parts = [
+export const parts: Part[] = [
   {
     slug: "head",
     label: "Head",
