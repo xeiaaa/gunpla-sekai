@@ -15,7 +15,7 @@ export default function HomePage() {
                 component="span"
                 inherit
                 variant="gradient"
-                gradient={{ from: "pink", to: "yellow" }}>
+                gradient={{ from: "#B23634", to: "#F5D34B" }}>
                 Gunpla (ガンプラ)
               </Text>{" "}
               and anything model kit related
@@ -32,7 +32,7 @@ export default function HomePage() {
 
             <Button
               variant="gradient"
-              gradient={{ from: "pink", to: "yellow" }}
+              gradient={{ to: "#F5D34B", from: "#B23634" }}
               size="xl"
               className={classes.control}
               mt={40}>

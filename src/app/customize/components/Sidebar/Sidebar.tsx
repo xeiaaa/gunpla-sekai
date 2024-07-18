@@ -208,6 +208,14 @@ export default function Sidebar() {
 
                 if (currentMaterial) {
                   applyFinishToMaterial(currentMaterial, e as FINISH_TYPE);
+
+                  setMaterialsMap((prev) => {
+                    prev[currentMaterial.name].paint = {
+                      ...prev[currentMaterial.name].paint,
+                      finish: e as FINISH_TYPE,
+                    };
+                    return { ...prev };
+                  });
                 }
               }}
               data={[
@@ -338,7 +346,14 @@ export default function Sidebar() {
                           return { ...prev };
                         });
 
-                        setSelectedPaint(null);
+                        if (currentMaterialData) {
+                          setSelectedPaint({
+                            ...currentMaterialData.paint,
+                            name: color,
+                            color,
+                            type: PAINT_TYPE.OWN,
+                          });
+                        }
                       } else {
                         notifications.show({
                           title: "Error!",

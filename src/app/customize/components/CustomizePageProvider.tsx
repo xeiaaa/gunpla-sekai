@@ -221,6 +221,9 @@ export function CustomizePageProvider({
   useEffect(() => {
     if (currentMaterialData) {
       setIsClear(currentMaterialData.isClear);
+
+      setSelectedPaint(currentMaterialData.paint);
+      setSelectedFinish(currentMaterialData.paint.finish);
     }
   }, [currentMaterialData]);
 
