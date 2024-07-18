@@ -3,9 +3,14 @@
 import {
   Box,
   Button,
+  Drawer,
   Flex,
   Loader,
+  ScrollArea,
+  SegmentedControl,
+  Space,
   Stack,
+  Tabs,
   Text,
   UnstyledButton,
 } from "@mantine/core";
@@ -14,7 +19,7 @@ import { handleSaveImage, invertColor } from "./helpers";
 import useCustomizePageContext from "./hooks/useCustomizePageContext";
 import Drawers from "./components/Drawers";
 import Sidebar from "./components/Sidebar/Sidebar";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Fun from "./components/Sidebar/Fun";
 import { color } from "three/examples/jsm/nodes/Nodes";
 import classes from "./components/Sidebar/Sidebar.module.css";
@@ -23,23 +28,25 @@ import {
   IconSettings,
   IconDownload,
 } from "@tabler/icons-react";
+import { useDisclosure } from "@mantine/hooks";
+import { parts } from "./parts";
 
 export default function CustomizePage() {
   const {
     modelViewerRef,
-
     bgColor,
-
     openControlsDrawer,
     openSettingsDrawer,
-
     isLoadingModel,
   } = useCustomizePageContext();
+
+  const [opened, { open, close }] = useDisclosure(false);
+  const [partsSelected, setPartsSelected] = useState<string>("");
+  const [pieceSelected, setPieceSelected] = useState<string>("");
 
   useEffect(() => {
     import("@google/model-viewer").catch(console.error);
   }, []);
-
   return (
     <>
       <Drawers />
@@ -163,7 +170,60 @@ export default function CustomizePage() {
             </model-viewer>
           </Box>
           <Box mt={20} className={classes.funMobile}>
-            <Fun />
+            {/* <Fun /> */}
+            <Button onClick={open}>Open</Button>
+            <Drawer
+              withCloseButton={false}
+              opened={opened}
+              onClose={close}
+              position="bottom"
+              size={300}
+              overlayProps={{ opacity: "0" }}
+            >
+              <Tabs
+                defaultValue="parts"
+                orientation="horizontal"
+                variant="outline"
+              >
+                <Tabs.List>
+                  <Tabs.Tab value="parts">Parts</Tabs.Tab>
+                  <Tabs.Tab value="paints">Paints</Tabs.Tab>
+                  <Tabs.Tab value="fun">Fun</Tabs.Tab>
+                </Tabs.List>
+                <Tabs.Panel value="parts" p="20 0">
+                  <ScrollArea scrollbarSize={0}>
+                    <SegmentedControl
+                      data={parts.map((part) => part.label)}
+                      style={{ overflow: "auto" }}
+                      fullWidth
+                      onChange={(e) => {
+                        setPartsSelected(e);
+                        setPieceSelected("");
+                      }}
+                    />
+                  </ScrollArea>
+                  <Space h={8} />
+                  <Text>Part</Text>
+                  <Space h={4} />
+                  <ScrollArea scrollbarSize={0}>
+                    {partsSelected && (
+                      <SegmentedControl
+                        value={pieceSelected}
+                        data={parts
+                          .find((part) => part.label === partsSelected)
+                          .materials.map((material) => material[1])}
+                        style={{ overflow: "auto" }}
+                        onChange={(e) => setPieceSelected(e)}
+                      />
+                    )}
+                  </ScrollArea>
+                </Tabs.Panel>
+                <Tabs.Panel value="paints">Paints</Tabs.Panel>
+                <Tabs.Panel value="fun" flex={1}>
+                  <Fun />
+                </Tabs.Panel>
+              </Tabs>
+            </Drawer>
           </Box>
         </Flex>
       </Flex>
