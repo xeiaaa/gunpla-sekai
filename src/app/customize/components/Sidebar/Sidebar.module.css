@@ -20,12 +20,19 @@
 }
 
 .modelNavMobile {
-  @media (max-width: em(500)) {
+  @media (max-width: em(800)) {
     display: none;
   }
 }
 .modelIconMobile {
-  @media (min-width: em(500)) {
+  display: none;
+  @media (max-width: em(800)) {
+    display: flex;
+  }
+}
+
+.drawerTabTextMobile {
+  @media (max-width: em(400)) {
     display: none;
   }
 }

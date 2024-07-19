@@ -3,7 +3,7 @@ import { ALPHA_MODE, FINISH_TYPE } from "../../../../types";
 import useCustomizePageContext from "../../hooks/useCustomizePageContext";
 import classes from "./Sidebar.module.css";
 
-export default function Fun() {
+export default function Fun({ showTitle = true }) {
   const { reset, materials, applyFinishToMaterial, clearPartsAlpha } =
     useCustomizePageContext();
   return (
@@ -15,7 +15,7 @@ export default function Fun() {
       }}
       className={classes.demo}
     >
-      <Text size="sm">Fun</Text>
+      {showTitle && <Text size="sm">Fun</Text>}
       <Flex
         style={{
           flexDirection: "row",
