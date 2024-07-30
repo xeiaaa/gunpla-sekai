@@ -53,9 +53,14 @@ export default function PaintOptions() {
     setSelectedBrand(e);
     setPaint(commercialPaints[e].paints);
   };
+
   return (
-    <>
-      <Box flex={1}>
+    <Box
+      style={{
+        position: "relative",
+      }}
+    >
+      <Box>
         <Flex
           style={{
             width: "100%",
@@ -72,7 +77,7 @@ export default function PaintOptions() {
           />
         </Flex>
 
-        <Space h={16} />
+        {/* <Space h={8} /> */}
       </Box>
       <Box flex={1}>
         {currentColorTab === "OWN" && (
@@ -129,7 +134,7 @@ export default function PaintOptions() {
                 },
               ]}
             />
-            <Space h={16} />
+            <Space h={8} />
 
             <Text size="sm"> Finish</Text>
             <SegmentedControl
@@ -208,10 +213,10 @@ export default function PaintOptions() {
                 },
               ]}
             />
-            <Space h={16} />
+            <Space h={8} />
 
             <Text size="sm">Add Color to Palette</Text>
-            <Flex gap={16}>
+            <Flex gap={8}>
               <ColorInput
                 value={colorToAdd}
                 onChange={(e) => setColorToAdd(e)}
@@ -231,7 +236,7 @@ export default function PaintOptions() {
                 <IconPlus />
               </Button>
             </Flex>
-            <Space h={16} />
+            <Space h={8} />
             <Text size="sm"> Palette</Text>
 
             <Flex gap={8} wrap="wrap">
@@ -242,14 +247,7 @@ export default function PaintOptions() {
                     variant="transparent"
                     style={{ border: "red", borderWidth: 2 }}
                     onClick={() => {
-                      console.log("Changing material color...");
-                      console.log(
-                        selectedMaterialSlug,
-                        color,
-                        isClear ? "clear" : "opaque"
-                      );
                       if (currentMaterial) {
-                        console.log(currentMaterial.getAlphaCutoff());
                         if (isClear) {
                           currentMaterial.setAlphaMode("BLEND");
                           currentMaterial.setAlphaCutoff(0.9);
@@ -328,20 +326,27 @@ export default function PaintOptions() {
                 ))}
               </Menu.Dropdown>
             </Menu>
-
-            <Space h={16} />
-            <Text size="sm"> Paints</Text>
+            <Space h={8} />
+            <Text size="sm" mb={4}>
+              {" "}
+              Paints
+            </Text>
             {selectedBrand ? (
-              <Flex flex={1} style={{ position: "relative" }}>
+              <Flex style={{ position: "relative" }} mah={300}>
                 <Flex
                   gap={8}
                   wrap="wrap"
                   align="flex-start"
                   className={classes.noScrollbar}
-                  style={{
-                    ...absoluteFill,
-                    overflow: "scroll",
-                  }}
+                  style={
+                    {
+                      // ...absoluteFill,
+                      // overflow: "scroll",
+                      // maxHeight: 200,
+                    }
+                  }
+                  p={4}
+                  // h="100%"
                 >
                   {paint.map((paint) => {
                     return (
@@ -351,14 +356,7 @@ export default function PaintOptions() {
                         variant="transparent"
                         style={{ border: "red", borderWidth: 2 }}
                         onClick={() => {
-                          console.log("Changing material color...");
-                          console.log(
-                            selectedMaterialSlug,
-                            paint.color,
-                            isClear ? "clear" : "opaque"
-                          );
                           if (currentMaterial) {
-                            console.log(currentMaterial.getAlphaCutoff());
                             if (isClear) {
                               currentMaterial.setAlphaMode("BLEND");
                               currentMaterial.setAlphaCutoff(0.9);
@@ -406,7 +404,10 @@ export default function PaintOptions() {
                               paint.code === selectedPaint.code && (
                                 <CheckIcon
                                   color={invertColor(paint.color)}
-                                  style={{ width: rem(12), height: rem(12) }}
+                                  style={{
+                                    width: rem(12),
+                                    height: rem(12),
+                                  }}
                                 />
                               )}
                           </ColorSwatch>
@@ -425,9 +426,7 @@ export default function PaintOptions() {
         )}
       </Box>
 
-      <Space h={16} />
-
-      <Fun />
-    </>
+      <Space h={8} />
+    </Box>
   );
 }

@@ -60,14 +60,13 @@ export default function Sidebar() {
     applyFinishToMaterial,
     selectedPaint,
     setSelectedPaint,
-    reset,
   } = useCustomizePageContext();
 
   const handleSelectedBrand = (e: string) => {
     setSelectedBrand(e);
     setPaint(commercialPaints[e].paints);
   };
-  console.log({ selectedPaint });
+
   return (
     <>
       <Flex
@@ -97,7 +96,7 @@ export default function Sidebar() {
                           key={slug}
                           style={{ width: "100%" }}
                           onClick={() => {
-                            console.log(slug);
+                            // console.log(slug);
                             setSelectedMaterialSlug(slug);
                           }}
                         >
@@ -308,14 +307,14 @@ export default function Sidebar() {
                     variant="transparent"
                     style={{ border: "red", borderWidth: 2 }}
                     onClick={() => {
-                      console.log("Changing material color...");
-                      console.log(
-                        selectedMaterialSlug,
-                        color,
-                        isClear ? "clear" : "opaque"
-                      );
+                      // console.log("Changing material color...");
+                      // console.log(
+                      //   selectedMaterialSlug,
+                      //   color,
+                      //   isClear ? "clear" : "opaque"
+                      // );
                       if (currentMaterial) {
-                        console.log(currentMaterial.getAlphaCutoff());
+                        // console.log(currentMaterial.getAlphaCutoff());
                         if (isClear) {
                           currentMaterial.setAlphaMode("BLEND");
                           currentMaterial.setAlphaCutoff(0.9);
@@ -420,14 +419,14 @@ export default function Sidebar() {
                         variant="transparent"
                         style={{ border: "red", borderWidth: 2 }}
                         onClick={() => {
-                          console.log("Changing material color...");
-                          console.log(
-                            selectedMaterialSlug,
-                            paint.color,
-                            isClear ? "clear" : "opaque"
-                          );
+                          // console.log("Changing material color...");
+                          // console.log(
+                          //   selectedMaterialSlug,
+                          //   paint.color,
+                          //   isClear ? "clear" : "opaque"
+                          // );
                           if (currentMaterial) {
-                            console.log(currentMaterial.getAlphaCutoff());
+                            // console.log(currentMaterial.getAlphaCutoff());
                             if (isClear) {
                               currentMaterial.setAlphaMode("BLEND");
                               currentMaterial.setAlphaCutoff(0.9);
