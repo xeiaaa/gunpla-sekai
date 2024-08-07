@@ -1,10 +1,9 @@
-"use client";
-
 import { Group, Button, Box } from "@mantine/core";
 import classes from "./AppHeader.module.css";
 import Link from "next/link";
 import { HeaderAuthMenu } from "./HeaderAuthMenu";
 import Image from "next/image";
+import { SignedIn, SignedOut, SignInButton, UserButton } from "@clerk/nextjs";
 
 export function AppHeader() {
   return (
@@ -39,8 +38,16 @@ export function AppHeader() {
                 Blog
               </Link>
             </Group>
-            <Group visibleFrom="sm">
-              <Button variant="default">Log in</Button>
+            <Group visibleFrom="sm" pl={5}>
+              <SignedOut>
+                <Link href="/sign-in">
+                  <Button variant="default">Log in</Button>
+                </Link>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+              {/* <Button variant="default">Log in</Button> */}
               {/* <Button>Sign up</Button>
               <HeaderAuthMenu /> */}
             </Group>
