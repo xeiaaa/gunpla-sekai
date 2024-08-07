@@ -9,15 +9,26 @@ import {
   Title,
 } from "@mantine/core";
 import axios from "axios";
-import { useEffect } from "react";
 import { ProductShort } from "../../types";
 import Image from "next/image";
 import { formatNumberString } from "../customize/helpers";
+import { headers } from "next/headers";
+
+async function getProducts() {
+  const headersList = headers();
+
+  const host = headersList.get("host");
+  const protocol = headersList.get("x-forwarded-proto");
+
+  const { data: products } = await axios.get(
+    `${protocol}://${host}/api/products`
+  );
+
+  return products;
+}
 
 export default async function ShopPage() {
-  const { data: products } = await axios.get(
-    "http://localhost:3000/api/products"
-  );
+  const products = await getProducts();
 
   return (
     <div>
