@@ -45,7 +45,7 @@ export function AppHeader() {
                 </Link>
               </SignedOut>
               <SignedIn>
-                <UserButton />
+                <UserButton afterSignOutUrl="/" />
               </SignedIn>
               {/* <Button variant="default">Log in</Button> */}
               {/* <Button>Sign up</Button>

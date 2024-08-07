@@ -1,0 +1,32 @@
+User
+- id                  number
+- clerkId             string      - unique to clerk
+- firstName           string      - NULLABLE -> when created account using email & pass
+- lastName            string      - NULLABLE -> when created account using email & pass
+- avatar              string      - profile_image_url
+- email               string
+
+Model
+- id                  number
+- name                string
+- src                 string
+- parts               object      - slug / label / materials
+- materialData        object      - default data
+- credits             string      - "SAZABI MSN-04 Gundam" (https://skfb.ly/66UFK) by kunnatee is licensed under CC
+                                    Attribution-NonCommercial-ShareAlike (http://creativecommons.org/licenses/by-nc-sa/4.0/).
+- createdAt           date
+- updatedAt           date
+
+Custom
+- id                  number
+- userId              number
+- modelId             number
+- materialData        object      - overrides materialData
+- createdAt           date
+- updatedAt           date
+
+Publishment
+- id                  number
+- customId            number
+- isActive            boolean
+- createdAt           date

@@ -5,13 +5,7 @@ import { theme } from "./theme";
 import { AppShell_ } from "../components/AppShell_/AppShell_";
 import "@mantine/notifications/styles.css";
 import { Notifications } from "@mantine/notifications";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata = {
   title: "Gunpla Sekai",
