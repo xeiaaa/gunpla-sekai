@@ -71,3 +71,18 @@ export const getRandomColor = () => {
   }
   return color;
 };
+
+export const formatNumberString = (numberString: string) => {
+  const numericValue = parseFloat(numberString);
+
+  if (isNaN(numericValue)) {
+    throw new Error("Invalid number string");
+  }
+
+  const formattedNumber = new Intl.NumberFormat("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(numericValue);
+
+  return formattedNumber;
+};

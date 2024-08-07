@@ -1,4 +1,3 @@
-"use client";
 import { Title, Text, Container, Button, Flex } from "@mantine/core";
 import classes from "./page.module.css";
 

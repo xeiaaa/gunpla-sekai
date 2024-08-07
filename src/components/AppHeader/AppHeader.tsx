@@ -23,9 +23,9 @@ export function AppHeader() {
           </Link>
           <Group h="100%" gap={5} visibleFrom="sm">
             <Group h="100%">
-              {/* <Link href="/shop" className={classes.link}>
+              <Link href="/shop" className={classes.link}>
                 Shop
-              </Link> */}
+              </Link>
               <Link href="/gundam" className={classes.link}>
                 Gundam
               </Link>

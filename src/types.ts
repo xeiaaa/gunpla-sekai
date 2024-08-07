@@ -1,3 +1,28 @@
+export interface ProductVariant {
+  product_id: number;
+  id: number;
+  title: string;
+  price: string;
+  compare_at_price: number | null;
+}
+export interface ProductImage {
+  product_id: number;
+  id: number;
+  alt: string;
+  price: string;
+  width: number;
+  heigth: number;
+  src: string;
+}
+
+export type ProductShort = {
+  id: number;
+  title: string;
+  variants: ProductVariant[];
+  image: ProductImage;
+  body_html: string;
+};
+
 export enum PAINT_TYPE {
   COMMERCIAL = "COMMERCIAL",
   OWN = "OWN",

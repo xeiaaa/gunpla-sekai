@@ -11,6 +11,12 @@ const nextConfig = {
         port: "",
         pathname: "/gundam/images/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.shopify.com",
+        port: "",
+        pathname: "/**",
+      },
     ],
   },
 };
